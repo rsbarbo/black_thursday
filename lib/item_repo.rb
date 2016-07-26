@@ -34,19 +34,17 @@ class ItemRepo
   end
 
   def find_all_with_description(description)
-      s = all_items.values.find_all do |item|
-       item.description == description
-      end
+    all_items.values.find_all do |item|
+      item.description == description
     end
+  end
 
-#
-#   def check_for_description(returned_description)
-#     if !returned_description.empty?
-#       returned_description
-#     else
-#       returned_description
-#     end
-#   end
+  def find_all_by_price(price)
+    all_items.values.find_all do |item|
+      item.unit_price == price
+    end
+  end
+
 end
 
 # itemrepo = ItemRepo.new("./test/support/items_test.csv")

@@ -52,6 +52,16 @@ class ItemRepoTest < Minitest::Test
 
   def test_find_all_with_description_when_description_is_blank
     item_repo = ItemRepo.new("./test/support/items_test.csv")
-    assert_equal [], item_repo.find_all_with_description("^").first
+    assert_equal [], item_repo.find_all_with_description("^")
+  end
+
+  def test_find_all_by_price
+    item_repo = ItemRepo.new("./test/support/items_test.csv")
+    assert_equal 11, item_repo.find_all_by_price(BigDecimal.new(20000)).length
+  end
+
+  def test_find_all_by_price_when_price_is_empty
+    item_repo = ItemRepo.new("./test/support/items_test.csv")
+    assert_equal [], item_repo.find_all_by_price(BigDecimal.new(2000000))
   end
 end
