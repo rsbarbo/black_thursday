@@ -45,6 +45,12 @@ class ItemRepo
     end
   end
 
+  def find_all_by_price_in_range(range)
+    all_items.values.find_all do |item|
+      item if item.unit_price.between?(range.first, range.last)
+    end
+  end
+
 end
 
 # itemrepo = ItemRepo.new("./test/support/items_test.csv")

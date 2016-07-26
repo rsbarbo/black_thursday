@@ -64,4 +64,14 @@ class ItemRepoTest < Minitest::Test
     item_repo = ItemRepo.new("./test/support/items_test.csv")
     assert_equal [], item_repo.find_all_by_price(BigDecimal.new(2000000))
   end
+
+  def test_find_all_by_price_in_range
+    item_repo = ItemRepo.new("./test/support/items_test.csv")
+    assert_equal 205, item_repo.find_all_by_price_in_range(1000.00..1500.00).length
+  end
+
+  def test_return_an_empty_array_if_price_is_not_range
+    item_repo = ItemRepo.new("./test/support/items_test.csv")
+    assert_equal [], item_repo.find_all_by_price_in_range(1000000000.00..1500000000000.00)
+  end
 end
