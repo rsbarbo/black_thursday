@@ -45,8 +45,8 @@ class ItemRepoTest < Minitest::Test
   end
 
   def test_find_all_with_description
-    skip
     item_repo = ItemRepo.new("./test/support/items_test.csv")
-    assert_equal "", item_repo.find_all_with_description
+    description = "This is a wooden picture frame made to order in any color you would like. Image not included in purchase.\n\nfor portrait style it is:\n10&quot; tall and 6&quot; wide\n\nFor landscape style it is:\n10&quot; wide and 6&quot; tall"
+    assert_equal description, item_repo.find_all_with_description(description).first.description
   end
 end

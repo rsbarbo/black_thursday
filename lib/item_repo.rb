@@ -34,6 +34,11 @@ class ItemRepo
   end
 
   def find_all_with_description(description)
-    all_items
+    all_items.values.find_all do |item|
+      item.description == description
+    end
   end
 end
+
+# itemrepo = ItemRepo.new("./test/support/items_test.csv")
+# p itemrepo.find_all_with_description("This is a wooden picture frame made to order in any color you would like. Image not included in purchase.\n\nfor portrait style it is:\n10&quot; tall and 6&quot; wide\n\nFor landscape style it is:\n10&quot; wide and 6&quot; tall")
