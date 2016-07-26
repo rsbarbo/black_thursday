@@ -3,22 +3,35 @@ require './lib/item'
 
 
 class ItemTest < Minitest::Test
-  def test_it_can_readlines_item_csv
-    i = Item.new
-    expected = "263395237"
-    assert_equal expected, i.data_load("./test/support/items_test.csv")
+  attr_reader :item
+
+  def setup
+    @item = Item.new({
+      :name        => "Pencil",
+      :description => "You can use it to write things",
+      :unit_price  => BigDecimal.new(10.99,4),
+      :created_at  => "2016-07-26 08:05:03 -0600",
+      :updated_at  => "2016-07-26 08:05:03 -0600",
+      :unit_price_to_dollars  => 0.1099,
+    })  end
+
+  def test_returns_name
+    assert_equal "pencil", item.name
   end
 
-  def test_something
-    skip
-    i = Item.new
-    expected = ""
-    assert_equal expected, i.unit_price_to_dollars
+  def test_returns_description
+    assert_equal "You can use it to write things", item.description
   end
 
-  def test_it_returns_the_integer_id_of_the_item
-    skip
-    i = Item.new
-    assert_equal "id", i.get_id
+  def test_returns_unit_price
+    assert_equal 0.1099, item.unit_price_to_dollars
+  end
+
+  def test_returns_created_at
+    assert_equal "2016-07-26 08:05:03 -0600", item.created_at
+  end
+
+  def test_returns_updated_at
+    assert_equal "2016-07-26 08:05:03 -0600", item.updated_at
   end
 end
