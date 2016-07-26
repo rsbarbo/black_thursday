@@ -51,6 +51,12 @@ class ItemRepo
     end
   end
 
+  def find_all_by_merchant_id(id)
+    all_items.values.find_all do |item|
+      item.merchant_id == id
+    end
+  end
+
 end
 
 # itemrepo = ItemRepo.new("./test/support/items_test.csv")

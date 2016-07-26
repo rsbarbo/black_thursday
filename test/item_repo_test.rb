@@ -74,4 +74,15 @@ class ItemRepoTest < Minitest::Test
     item_repo = ItemRepo.new("./test/support/items_test.csv")
     assert_equal [], item_repo.find_all_by_price_in_range(1000000000.00..1500000000000.00)
   end
+
+  def test_find_all_by_merchant_id
+    item_repo = ItemRepo.new("./test/support/items_test.csv")
+    assert_equal 20, item_repo.find_all_by_merchant_id(12334195).length
+  end
+
+  def test_returns_empty_array_when_no_merchant_id
+    item_repo = ItemRepo.new("./test/support/items_test.csv")
+    assert_equal [], item_repo.find_all_by_merchant_id(98798798798)
+  end
+
 end
