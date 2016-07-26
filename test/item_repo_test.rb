@@ -24,11 +24,13 @@ class ItemRepoTest < Minitest::Test
     assert_equal "2016-01-11 13:18:58 UTC", item_repo.find_by_name("two tone blue stoneware pot").created_at
     assert_equal "A rounded stoneware pot/bowl with a dark blue glaze and a white/blue glaze.\nA completely unique pot with lots of character\n9.5cm width\n6.5cm height", item_repo.find_by_name("two tone blue stoneware pot").description
     assert_equal 10.00, item_repo.find_by_name("two tone blue stoneware pot").unit_price_to_dollars
-    assert_equal "12334609", item_repo.find_by_name("two tone blue stoneware pot").merchant_id
+    assert_equal 12334609, item_repo.find_by_name("two tone blue stoneware pot").merchant_id
   end
 
-  def method_name
-    skip
-    #test case for name starts with number = 510+ realpush icon set
+  def test_find_by_name_if_it_starts_with_number
+     item_repo = ItemRepo.new("./test/support/items_test.csv")
+     assert_equal "2016-01-11 09:34:06 UTC", item_repo.find_by_name("510+ realpush icon set").created_at
+     assert_equal 12334141, item_repo.find_by_name("510+ realpush icon set").merchant_id
+     assert_equal 12.00, item_repo.find_by_name("510+ realpush icon set").unit_price_to_dollars
   end
 end
