@@ -7,6 +7,7 @@ class ItemTest < Minitest::Test
 
   def setup
     @item = Item.new({
+      :id          => 1234567,
       :name        => "Pencil",
       :description => "You can use it to write things",
       :unit_price  => BigDecimal.new(10.99,4),
@@ -14,6 +15,10 @@ class ItemTest < Minitest::Test
       :updated_at  => "2016-07-26 08:05:03 -0600",
       :unit_price_to_dollars  => 0.1099,
     })  end
+
+  def test_it_retunrs_id
+    assert_equal 1234567, item.id
+  end
 
   def test_returns_name
     assert_equal "pencil", item.name
@@ -33,5 +38,9 @@ class ItemTest < Minitest::Test
 
   def test_returns_updated_at
     assert_equal "2016-07-26 08:05:03 -0600", item.updated_at
+  end
+
+  def test_returns_unit_price
+    assert_equal 10.99, item.unit_price.to_f
   end
 end
