@@ -13,5 +13,8 @@ class SalesEngine
   end
 
 end
-se = SalesEngine.from_csv({:items => "./data/items.csv"})
-p se.item_repo
+
+if __FILE__ == $0
+  se = SalesEngine.from_csv({:items => "./data/items.csv"})
+  p se.item_repo.find_by_id(263395237)
+end

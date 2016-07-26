@@ -14,7 +14,8 @@ class ItemTest < Minitest::Test
       :created_at  => "2016-07-26 08:05:03 -0600",
       :updated_at  => "2016-07-26 08:05:03 -0600",
       :unit_price_to_dollars  => 0.1099,
-    })  end
+      })
+  end
 
   def test_it_retunrs_id
     assert_equal 1234567, item.id
