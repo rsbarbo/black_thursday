@@ -24,6 +24,11 @@ class ItemRepoTest < Minitest::Test
     assert_equal "two tone blue stoneware pot", item_repo.find_by_name("two tone blue stoneware pot").name
   end
 
+  def test_find_by_name_return_nil
+    item_repo = ItemRepo.new("./test/support/items_test.csv")
+    assert_equal nil, item_repo.find_by_name("kjadkjashdkjas")
+  end
+
   def test_find_by_name_and_return_values
     item_repo = ItemRepo.new("./test/support/items_test.csv")
     assert_equal "2016-01-11 13:18:58 UTC", item_repo.find_by_name("Two tone blue stoneware pot").created_at

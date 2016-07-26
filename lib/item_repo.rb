@@ -11,7 +11,7 @@ class ItemRepo
 
   def load_csvs(file_path)
     content = CSV.open(file_path, headers: true, header_converters: :symbol)
-    content.each_with_index do |row|
+    content.each do |row|
       all_items << Item.new(row)
     end
   end
