@@ -18,10 +18,21 @@ class ItemRepoTest < Minitest::Test
     assert_equal 45.00, item_repo.find_by_id(263565882).unit_price_to_dollars
   end
 
+  def test_it_returns_nil_when_searched_by_id
+    item_repo = ItemRepo.new("./test/support/items_test.csv")
+    assert_equal nil, item_repo.find_by_id(0000000)
+  end
+
+
   def test_find_by_name_regardless_of_case
     item_repo = ItemRepo.new("./test/support/items_test.csv")
     assert_equal "two tone blue stoneware pot", item_repo.find_by_name("Two tone blue stoneware pot").name
     assert_equal "two tone blue stoneware pot", item_repo.find_by_name("two tone blue stoneware pot").name
+  end
+
+  def test_find_by_name_return_nil
+    item_repo = ItemRepo.new("./test/support/items_test.csv")
+    assert_equal nil, item_repo.find_by_name("kjadkjashdkjas")
   end
 
   def test_find_by_name_and_return_values

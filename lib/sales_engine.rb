@@ -5,7 +5,7 @@ class SalesEngine
 
   def initialize(input)
     @item_repo = ItemRepo.new(input[:items])
-    #@merchand = MerchantRepo.new(input[:merchand])
+    @merchants = MerchantRepo.new(input[:merchants])
   end
 
   def self.from_csv(input)
