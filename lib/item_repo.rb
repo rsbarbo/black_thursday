@@ -2,7 +2,7 @@ require "csv"
 require "./lib/item"
 
 class ItemRepo
-
+  attr_accessor :all_items
 
   def initialize(file_path)
     @all_items = {}
@@ -22,5 +22,10 @@ class ItemRepo
     end
   end
 
+  def find_by_id(id_number)
+    @all_items.values.find do |item|
+      item.id == id_number
+    end
+  end
 
 end
