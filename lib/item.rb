@@ -10,7 +10,7 @@ class Item
 
   def initialize(row)
     @id = row[:id].to_i
-    @name = row[:name]
+    @name = row[:name].downcase
     @description = row[:description]
     @unit_price = BigDecimal.new(row[:unit_price])
     @created_at = row[:created_at]

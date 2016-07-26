@@ -17,7 +17,7 @@ class ItemRepo
   end
 
   def find_by_name(name)
-    @all_items.values.select do |item|
+    @all_items.values.find do |item|
       item.name == name
     end
   end
