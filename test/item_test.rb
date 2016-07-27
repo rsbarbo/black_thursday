@@ -56,6 +56,6 @@ class ItemTest < Minitest::Test
 
     assert_equal 12334141, id_result
     assert_equal "jejum", name_result
-
   end
+
 end
