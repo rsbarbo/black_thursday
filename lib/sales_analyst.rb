@@ -11,7 +11,6 @@ end
 if __FILE__ == $0
 se = SalesEngine.from_csv({:items => "./data/items.csv", :merchants => "./data/merchants.csv"})
 sa = SalesAnalyst.new(se)
-require 'pry'; binding.pry
 end
 
 
