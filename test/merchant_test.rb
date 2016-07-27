@@ -1,7 +1,7 @@
-require "./test_helper"
-require "./lib/merchant"
-require "./lib/item"
-require "./lib/sales_engine"
+require_relative "../test_helper"
+require_relative "../lib/merchant"
+require_relative "../lib/item"
+require_relative "../lib/sales_engine"
 require "csv"
 
 class MerchantTest < Minitest::Test

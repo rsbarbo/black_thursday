@@ -1,5 +1,5 @@
-require 'csv'
 require 'bigdecimal'
+require 'csv'
 
 
 class Item

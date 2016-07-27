@@ -1,5 +1,5 @@
+require_relative "../lib/item"
 require "csv"
-require "./lib/item"
 
 class ItemRepo
   attr_reader :engine

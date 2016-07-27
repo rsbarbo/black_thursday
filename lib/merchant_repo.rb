@@ -1,5 +1,5 @@
+require_relative "../lib/merchant"
 require "csv"
-require "./lib/merchant"
 
 class MerchantRepo
   attr_accessor :all_merchants
