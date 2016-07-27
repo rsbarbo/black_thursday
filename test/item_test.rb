@@ -32,7 +32,7 @@ class ItemTest < Minitest::Test
   def test_returns_unit_price
     assert_equal 0.1099, item.unit_price_to_dollars
   end
-
+  
   def test_returns_created_at
     assert_equal "2016-07-26 08:05:03 -0600", item.created_at
   end
