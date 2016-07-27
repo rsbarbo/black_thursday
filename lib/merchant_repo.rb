@@ -14,7 +14,7 @@ class MerchantRepo
   def load_csvs(file_path)
     content = CSV.open(file_path, headers: true, header_converters: :symbol)
     content.each do |row|
-      all_merchants << Merchant.new(row, engine)
+      all_merchants << Merchant.new(row, self)
     end
   end
 
@@ -23,7 +23,7 @@ class MerchantRepo
   end
 
   def find_by_id(id_number)
-    s = all_merchants.find do |merchant|
+      all_merchants.find do |merchant|
       merchant.id == id_number
     end
   end
