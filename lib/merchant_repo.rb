@@ -1,19 +1,20 @@
 require "csv"
 require "./lib/merchant"
-require "pry"
 
 class MerchantRepo
   attr_accessor :all_merchants
+  attr_reader :engine
 
-  def initialize(file_path)
+  def initialize(file_path, sales_engine)
     @all_merchants = []
+    @engine = sales_engine
     @load_csvs = load_csvs(file_path)
   end
 
     def load_csvs(file_path)
       content = CSV.open(file_path, headers: true, header_converters: :symbol)
       content.each do |row|
-        all_merchants << Merchant.new(row)
+        all_merchants << Merchant.new(row, engine)
       end
     end
 

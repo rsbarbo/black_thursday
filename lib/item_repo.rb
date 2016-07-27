@@ -2,17 +2,19 @@ require "csv"
 require "./lib/item"
 
 class ItemRepo
+  attr_reader :engine
   attr_accessor :all_items
 
-  def initialize(file_path)
+  def initialize(file_path, sales_engine)
     @all_items = []
+    @engine = sales_engine
     @load_csvs = load_csvs(file_path)
   end
 
   def load_csvs(file_path)
     content = CSV.open(file_path, headers: true, header_converters: :symbol)
     content.each do |row|
-      all_items << Item.new(row)
+      all_items << Item.new(row, engine)
     end
   end
 
