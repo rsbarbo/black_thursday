@@ -19,4 +19,24 @@ class Item
     @engine = sales_engine
   end
 
+  def merchant
+    require 'pry'; binding.pry
+    # we will have the item ID coming in
+    #the item ID is not available in the merchant csv
+    #we need to convert the item ID coming in to either name or merchant ID
+    #HOW WE WILL DO THAT?
+    # Merchant ID and Name are the only things in common we have with Merchant
+    # we need to find one thing in common that we can use to return the instance of merchant\
+
+    engine.merchants.all_merchants.select do |merchant|
+
+      merchant.
+    end
+  end
+
+  def items
+    engine.items.all_items.select do |item|
+      item.merchant_id == self.id
+    end
+  end
 end

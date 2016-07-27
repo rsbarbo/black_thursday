@@ -11,7 +11,7 @@ class Merchant
   end
 
   def items
-    s = engine.items.all_items.select do |item|
+    engine.items.all_items.select do |item|
       item.merchant_id == self.id
     end
   end
