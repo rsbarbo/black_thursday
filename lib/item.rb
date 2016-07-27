@@ -20,13 +20,8 @@ class Item
   end
 
   def merchant
-    # engine.merchants.all_merchants.select do |merchant|
-    # we will have the item ID coming in
-    #the item ID is not available in the merchant csv
-    #we need to convert the item ID coming in to either name or merchant ID
-    #HOW WE WILL DO TH
-    # Merchant ID and Name are the only things in common we have with Merchant
-    # we need to find one thing in common that we can use to return the instance of merchant\
+    s = engine.merchants.all_merchants.select do |merchant|
+      merchant.id == self.merchant_id
     end
   end
 

@@ -1,7 +1,7 @@
-require './test_helper'
-require './lib/item'
 require 'csv'
-require './lib/sales_engine'
+require_relative '../test_helper'
+require_relative '../lib/item'
+require_relative '../lib/sales_engine'
 
 
 class ItemTest < Minitest::Test
@@ -51,18 +51,11 @@ class ItemTest < Minitest::Test
     se = SalesEngine.from_csv({:items => "./data/items.csv", :merchants => "./data/merchants.csv"})
     item = se.items.find_by_id(263395237)
 
-    id_result 				 = item.merchant[0].id
-    # name_result        = item.merchant[0].name
-    # unit_price_result  = item.merchant[0].unit_price.to_f
-    # merchant_id_result = item.merchant[0].merchant_id
-    # created_at_result  = item.merchant[0].created_at
-    # updated_at_result  = item.merchant[0].updated_at
+    id_result 				   = item.merchant[0].id
+    name_result        = item.merchant[0].name
 
-    assert_equal 0, id_result
-    # assert_equal "510+ realpush icon set", name_result
-    # assert_equal 1200.00, unit_price_result
-    # assert_equal 12334141, merchant_id_result
-    # assert_equal "2016-01-11 09:34:06 UTC", created_at_result
-    # assert_equal "2007-06-04 21:35:10 UTC", updated_at_result
+    assert_equal 12334141, id_result
+    assert_equal "jejum", name_result
+
   end
 end

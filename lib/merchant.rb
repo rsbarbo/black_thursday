@@ -1,7 +1,7 @@
 require 'csv'
 require 'bigdecimal'
-class Merchant
 
+class Merchant
   attr_reader :id, :name, :engine
 
   def initialize(row, sales_engine)
