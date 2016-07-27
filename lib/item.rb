@@ -4,8 +4,8 @@ require 'bigdecimal'
 
 class Item
   attr_reader :id, :name, :description, :unit_price,
-              :created_at, :updated_at, :merchant_id,
-              :unit_price_to_dollars, :engine
+  :created_at, :updated_at, :merchant_id,
+  :unit_price_to_dollars, :engine
 
   def initialize(row, sales_engine)
     @id = row[:id].to_i

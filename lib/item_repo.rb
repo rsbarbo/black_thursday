@@ -33,7 +33,7 @@ class ItemRepo
     all_items.find do |item|
       item.id == id_number
     end
-    binding.pry
+    # binding.pry
   end
 
   def find_all_with_description(description)

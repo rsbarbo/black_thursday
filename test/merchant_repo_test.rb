@@ -3,7 +3,6 @@ require "./lib/merchant_repo"
 
 class MerchantRepoTest < Minitest::Test
 
-
   def test_returns_all_merchants
     merchant_repo = MerchantRepo.new("./test/support/merchants_test.csv", nil)
     assert_equal 98, merchant_repo.all_merchants.length

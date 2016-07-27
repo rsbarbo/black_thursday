@@ -1,6 +1,5 @@
 require 'csv'
 require 'bigdecimal'
-require 'pry'
 class Merchant
 
   attr_reader :id, :name, :engine
@@ -12,9 +11,8 @@ class Merchant
   end
 
   def items
-    engine.items.all_items.select d |item|
+    s = engine.items.all_items.select do |item|
       item.merchant_id == self.id
     end
   end
-
 end
