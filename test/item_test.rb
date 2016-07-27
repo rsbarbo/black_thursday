@@ -12,10 +12,10 @@ class ItemTest < Minitest::Test
       :id          => 1234567,
       :name        => "Pencil",
       :description => "You can use it to write things",
-      :unit_price  => BigDecimal.new(10.99,4),
+      :unit_price  => BigDecimal.new(1200),
       :created_at  => "2016-07-26 08:05:03 -0600",
       :updated_at  => "2016-07-26 08:05:03 -0600",
-      :unit_price_to_dollars  => 0.1099,
+      :unit_price_to_dollars  => :unit_price,
       }, nil)
   end
 
@@ -32,7 +32,7 @@ class ItemTest < Minitest::Test
   end
 
   def test_returns_unit_price
-    assert_equal 0.1099, item.unit_price_to_dollars
+    assert_equal BigDecimal.new(1200), item.unit_price
   end
 
   def test_returns_created_at
@@ -43,8 +43,8 @@ class ItemTest < Minitest::Test
     assert_equal Time.parse("2016-07-26 08:05:03 -0600"), item.updated_at
   end
 
-  def test_returns_unit_price
-    assert_equal 10.99, item.unit_price.to_f
+  def test_returns_unit_price_to_dollar
+    assert_equal 12.00, item.unit_price_to_dollars
   end
 
   def test_it_returns_items_based_on_id_given_to_item

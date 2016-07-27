@@ -3,7 +3,7 @@ require "csv"
 
 class ItemRepo
   attr_reader :engine
-  attr_accessor :all_items, :items
+  attr_accessor :all_items, :items, :find_all_by_merchant_id
 
   def initialize(file_path, sales_engine)
     @all_items = []
@@ -15,7 +15,7 @@ class ItemRepo
   def load_csvs(file_path)
     content = CSV.open(file_path, headers: true, header_converters: :symbol)
     content.each do |row|
-      all_items << Item.new(row, engine)
+      all_items << Item.new(row, self)
     end
   end
 
@@ -60,5 +60,11 @@ class ItemRepo
       item.merchant_id == id
     end
   end
+
+def find_items_by_merchant_id(merchant_id)
+  engine.merchants.all_merchants.select do |merchant|
+      merchant.id == merchant_id
+  end
+end
 
 end
