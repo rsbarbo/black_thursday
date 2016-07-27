@@ -37,12 +37,17 @@ class MerchantRepoTest < Minitest::Test
 
   def test_find_all_by_name_without_fragment
     merchant_repo = MerchantRepo.new("./test/support/merchants_test.csv")
-    assert_equal 0, merchant_repo.find_all_by_name("Turing School of Software and Design").length
+    assert_equal 0, merchant_repo.find_all_by_name("Blahblahblahblahblah").length
   end
 
   def test_find_all_by_name_with_fragment
     merchant_repo = MerchantRepo.new("./test/support/merchants_test.csv")
-    assert_equal "", merchant_repo.find_all_by_name("Qua").length
+    assert_equal 14, merchant_repo.find_all_by_name("Ma").length
+  end
+
+  def test_find_all_by_name_return_empty_array_when_doesnt_match
+    merchant_repo = MerchantRepo.new("./test/support/merchants_test.csv")
+    assert_equal [], merchant_repo.find_all_by_name("dsdsdsds")
   end
 
 end

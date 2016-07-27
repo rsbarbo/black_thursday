@@ -1,5 +1,6 @@
 require "csv"
 require "./lib/merchant"
+require "pry"
 
 class MerchantRepo
   attr_accessor :all_merchants
@@ -34,7 +35,7 @@ class MerchantRepo
 
     def find_all_by_name(name)
       all_merchants.find_all do |merchant|
-        merchant.name == name.downcase
+        merchant.name.include?(name.downcase)
       end
     end
 
