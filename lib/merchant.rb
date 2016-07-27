@@ -6,7 +6,7 @@ class Merchant
 
   def initialize(row, sales_engine)
     @id = row[:id].to_i
-    @name = row[:name].downcase
+    @name = row[:name]
     @engine = sales_engine
   end
 

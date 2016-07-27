@@ -25,7 +25,7 @@ class ItemRepo
 
   def find_by_name(name)
     all_items.find do |item|
-      item.name == name.downcase
+      item.name.downcase == name.downcase
     end
   end
 
@@ -38,7 +38,7 @@ class ItemRepo
 
   def find_all_with_description(description)
     all_items.find_all do |item|
-      item.description == description
+      item.description.downcase == description.downcase
     end
   end
 
@@ -47,6 +47,7 @@ class ItemRepo
       item.unit_price == price
     end
   end
+
 
   def find_all_by_price_in_range(range)
     all_items.find_all do |item|
