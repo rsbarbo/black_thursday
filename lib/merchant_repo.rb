@@ -3,7 +3,7 @@ require "csv"
 
 class MerchantRepo
   attr_accessor :all_merchants
-  attr_reader :engine
+  attr_reader :engine, :find_merchant_by_item_id
 
   def initialize(file_path, sales_engine)
     @all_merchants = []
@@ -40,4 +40,9 @@ class MerchantRepo
     end
   end
 
+  def find_merchant_by_item_id(item_id)
+    engine.items.all_items.select do |item|
+      item.merchant_id == item_id
+    end
+  end
 end

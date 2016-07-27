@@ -61,7 +61,7 @@ class ItemRepo
     end
   end
 
-def find_all_by_item_id_in_merchant(merchant_id)
+def find_items_by_merchant_id(merchant_id)
   engine.merchants.all_merchants.select do |merchant|
       merchant.id == merchant_id
   end

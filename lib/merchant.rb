@@ -2,17 +2,15 @@ require 'csv'
 require 'bigdecimal'
 
 class Merchant
-  attr_reader :id, :name, :engine
+  attr_reader :id, :name, :merchant_repo
 
-  def initialize(row, sales_engine)
+  def initialize(row, merchant_repo)
     @id = row[:id].to_i
     @name = row[:name]
-    @engine = sales_engine
+    @merchant_repo = merchant_repo
   end
 
   def items
-    engine.items.all_items.select do |item|
-      item.merchant_id == self.id
-    end
+    merchant_repo.find_merchant_by_item_id(self.id)
   end
 end
