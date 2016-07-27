@@ -3,12 +3,13 @@ require "./lib/item"
 
 class ItemRepo
   attr_reader :engine
-  attr_accessor :all_items
+  attr_accessor :all_items, :items
 
   def initialize(file_path, sales_engine)
     @all_items = []
     @engine = sales_engine
     @load_csvs = load_csvs(file_path)
+    @items = []
   end
 
   def load_csvs(file_path)
@@ -32,6 +33,7 @@ class ItemRepo
     all_items.find do |item|
       item.id == id_number
     end
+    binding.pry
   end
 
   def find_all_with_description(description)

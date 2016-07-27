@@ -23,7 +23,7 @@ class MerchantRepo
     end
 
     def find_by_id(id_number)
-      all_merchants.find do |merchant|
+      s = all_merchants.find do |merchant|
         merchant.id == id_number
       end
     end

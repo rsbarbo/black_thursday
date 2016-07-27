@@ -1,6 +1,6 @@
 require 'csv'
 require 'bigdecimal'
-
+require 'pry'
 class Merchant
 
   attr_reader :id, :name, :engine
@@ -9,6 +9,12 @@ class Merchant
     @id = row[:id].to_i
     @name = row[:name].downcase
     @engine = sales_engine
+  end
+
+  def items
+    engine.items.all_items.select d |item|
+      item.merchant_id == self.id
+    end
   end
 
 end
