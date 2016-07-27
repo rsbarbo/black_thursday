@@ -24,7 +24,7 @@ class ItemTest < Minitest::Test
   end
 
   def test_returns_name
-    assert_equal "pencil", item.name
+    assert_equal "Pencil", item.name
   end
 
   def test_returns_description
@@ -36,11 +36,11 @@ class ItemTest < Minitest::Test
   end
 
   def test_returns_created_at
-    assert_equal "2016-07-26 08:05:03 -0600", item.created_at
+    assert_equal Time.parse("2016-07-26 08:05:03 -0600"), item.created_at
   end
 
   def test_returns_updated_at
-    assert_equal "2016-07-26 08:05:03 -0600", item.updated_at
+    assert_equal Time.parse("2016-07-26 08:05:03 -0600"), item.updated_at
   end
 
   def test_returns_unit_price
@@ -51,8 +51,8 @@ class ItemTest < Minitest::Test
     se = SalesEngine.from_csv({:items => "./data/items.csv", :merchants => "./data/merchants.csv"})
     item = se.items.find_by_id(263395237)
 
-    id_result 				   = item.merchant[0].id
-    name_result        = item.merchant[0].name
+    id_result     = item.merchant[0].id
+    name_result   = item.merchant[0].name
 
     assert_equal 12334141, id_result
     assert_equal "jejum", name_result

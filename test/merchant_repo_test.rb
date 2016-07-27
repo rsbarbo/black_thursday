@@ -10,7 +10,7 @@ class MerchantRepoTest < Minitest::Test
 
   def test_it_returns_values_when_searched_by_id
     merchant_repo = MerchantRepo.new("./test/support/merchants_test.csv", nil)
-    assert_equal "justemonsters", merchant_repo.find_by_id(12334165).name
+    assert_equal "JUSTEmonsters", merchant_repo.find_by_id(12334165).name
   end
 
   def test_it_returns_NIL_when_searched_by_id_is_invalid
