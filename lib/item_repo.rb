@@ -30,10 +30,9 @@ class ItemRepo
   end
 
   def find_by_id(id_number)
-    all_items.find do |item|
+      all_items.find do |item|
       item.id == id_number
     end
-    # binding.pry
   end
 
   def find_all_with_description(description)
@@ -62,9 +61,9 @@ class ItemRepo
   end
 
 def find_items_by_merchant_id(merchant_id)
-  engine.merchants.all_merchants.select do |merchant|
+    engine.merchants.all_merchants.select do |merchant|
       merchant.id == merchant_id
-  end
+  end.first
 end
 
 end

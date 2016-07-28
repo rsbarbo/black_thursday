@@ -2,8 +2,8 @@ require_relative "../lib/merchant"
 require "csv"
 
 class MerchantRepo
-  attr_accessor :all_merchants
-  attr_reader :engine, :find_merchant_by_item_id
+  attr_accessor :all_merchants, :find_merchant_by_item_id
+  attr_reader :engine
 
   def initialize(file_path, sales_engine)
     @all_merchants = []
