@@ -11,8 +11,6 @@ class SalesAnalyst
     ((se.items.all.count)/(se.merchants.all.count.to_f)).round(2)
   end
 
-  #perhaps create a supporter file for those extra calculations
-  #that does not need to be here??? Will brainstorm with Super Susi
   def items_counter
     se.merchants.all.map do |merchant|
       merchant.items.count
@@ -24,8 +22,6 @@ class SalesAnalyst
     deviation_calculator(items_counter, avg_item_p_merchant)
   end
 
-  #perhaps create a supporter file for those extra calculations
-  #that does not need to be here??? Will brainstorm with Super Susi
   def deviation_calculator(items_counter, avg_item_p_merchant)
     pre_deviation = (items_counter.reduce(0) do |accounter, average_num|
       accounter + ((average_num - avg_item_p_merchant) ** 2)
@@ -35,26 +31,12 @@ class SalesAnalyst
 
   def merchants_with_high_item_count
     high_count = average_items_per_merchant_standard_deviation + average_items_per_merchant
-   s = se.merchants.all.find_all do |merchant|
+    se.merchants.all.find_all do |merchant|
     merchant.items.count > high_count
+    end
   end
-end
 
 end
-
-
-# sa = SalesAnalyst.new(se)
-# sa.average_items_per_merchant
-## needs to look into the find_all_items_by_merchant_id in order to get a count
-
-# sa.average_items_per_merchant_standard_deviation
-##comparing merchant to merchant
-##what is the spread?
-##you need to find the average of all items sold by merchants
-##so we will most liekly use an enum like .reduce to iterate through the
-##average from each merchant and then do the standard deviation math
-### of deviations 1
-
 
 if __FILE__ == $0
   se = SalesEngine.from_csv({:items => "./data/items.csv", :merchants => "./data/merchants.csv"})
