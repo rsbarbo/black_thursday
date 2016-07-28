@@ -11,6 +11,6 @@ class Merchant
   end
 
   def items
-    merchant_repo.find_merchant_by_item_id(self.id)
+    merchant_repo.find_merchant_by_item_id(id)
   end
 end

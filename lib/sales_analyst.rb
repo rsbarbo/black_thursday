@@ -41,9 +41,18 @@ class SalesAnalyst
     end
   end
 
-end
+  def average_item_price_for_merchant(number)
+    items = se.merchants.find_by_id(number).items
+    price_per_unit = items.map(&:unit_price)
+    it = price_per_unit.reduce(:+)/price_per_unit.count
+    it.round(2)
+  end
 
-if __FILE__ == $0
-  se = SalesEngine.from_csv({:items => "./data/items.csv", :merchants => "./data/merchants.csv"})
-  sa = SalesAnalyst.new(se)
+  def average_average_price_per_merchant
+    t = se.merchants.all.reduce(0) do |sum, merchant|
+      sum + average_item_price_for_merchant(merchant.id)
+    end/se.merchants.all.count
+    t.floor(2)
+  end
+
 end

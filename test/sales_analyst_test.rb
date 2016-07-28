@@ -34,9 +34,10 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_it_returns_the_average_price_of_merchants_items
-    skip
-    # returns a BigDecimal
-    assert_equal "", sa.average_item_price_per_merchant
+    assert_equal 25000.0, sa.average_item_price_for_merchant(12336622)
   end
 
+  def test_something
+    assert_in_delta 11633.33, sa.average_average_price_per_merchant, 0.005
+  end
 end
