@@ -6,7 +6,7 @@ class ItemRepoTest < Minitest::Test
 
   def test_returns_all_items
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
-    assert_equal 3, item_repo.all_items.length
+    assert_equal 4, item_repo.all_items.length
   end
 
   def test_it_returns_item_when_searched_by_id
@@ -44,7 +44,7 @@ class ItemRepoTest < Minitest::Test
 
   def test_all_returns_all_items
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
-    assert_equal 3, item_repo.all.length
+    assert_equal 4, item_repo.all.length
   end
 
   def test_find_all_with_description
@@ -81,7 +81,7 @@ class ItemRepoTest < Minitest::Test
 
   def test_find_all_by_merchant_id
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
-    assert_equal 1, item_repo.find_all_by_merchant_id(12336622).length
+    assert_equal 2, item_repo.find_all_by_merchant_id(12336622).length
   end
 
   def test_returns_empty_array_when_no_merchant_id
