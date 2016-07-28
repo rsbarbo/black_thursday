@@ -11,10 +11,15 @@ class SalesAnalyst
     ((se.items.all.count)/(se.merchants.all.count.to_f)).round(2)
   end
 
-  def items_counter
+  def items_counts_by_merchant
     se.merchants.all.map do |merchant|
       merchant.items.count
     end
+  end
+
+  def items_count
+    # se.ir # go through
+    items_counts_by_merchant.count
   end
 
   def average_items_per_merchant_standard_deviation

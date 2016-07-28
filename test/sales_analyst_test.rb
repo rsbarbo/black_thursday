@@ -13,9 +13,22 @@ class SalesAnalystTest < Minitest::Test
     assert_equal 2.88, sa.average_items_per_merchant
   end
 
-  def test_items_counter
-    assert_equal 475, sa.items_counter.count
+  def test_items_counter_by_merchant
+    assert_equal [2,4,6,1,8], sa.items_counter_by_merchant
   end
+
+  def test_it_can_count_all_items
+    assert_equal 21, sa.items_qty
+    # assert_equal 21, sa.items_counter_by_merchant.count
+  end
+
+  # items_collector
+  #   ==> [a,b,c]
+  #
+  # items_counter
+  #   ==> items_collector.count
+  #
+
 
   def test_it_can_return_average_items_per_merchant_standard_deviation
     assert_equal 3.26, sa.average_items_per_merchant_standard_deviation
