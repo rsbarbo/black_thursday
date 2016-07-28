@@ -1,0 +1,52 @@
+[[#<Item:0xXXXXXX @id=263567376, @name="The Gold Coast, Chicago, Illinois", @description="The Gold Coast of Chicago, Illinois 2013
++
++Taken and Edited by rakimagery
++
++This listing is for a canvas print that is gallery-wrapped around a 1.5” wooden stretcher frame. It arrives ready-to-hang right out of the box.
++
++
++Perfect for home or office!", @unit_price=#<BigDecimal:7f9cc2975368,'0.25E5',9(18)>, @created_at=2016-01-11 20:57:57 UTC, @updated_at=2011-12-20 13:29:36 UTC, @merchant_id=12336622, @unit_price_to_dollars=250.0, @item_repo=#<ItemRepo:0xXXXXXX @all_items=[#<Item:0xXXXXXX @id=263567292, @name="Intricate Sunset", @description="&quot;Intricate Sunset&quot; Original by CarolinaLou at Divine Designs by Caroline
++Size: 7.5x10.5in
++Materials: acrylic, canvas board
++Ships from: USA
++Price: $81
++MORE AVAILABLE", @unit_price=#<BigDecimal:7f9cc297d518,'0.61E4',9(18)>, @created_at=2016-01-11 20:57:28 UTC, @updated_at=2006-09-08 18:17:01 UTC, @merchant_id=12336050, @unit_price_to_dollars=61.0, @item_repo=#<ItemRepo:0xXXXXXX ...>>, #<Item:0xXXXXXX ...>, #<Item:0xXXXXXX @id=263567474, @name="Minty Green Knit Crochet Infinity Scarf", @description="- Super Chunky knit infinity scarf
++- Soft mixture of 97% Acrylic and 3% Viscose
++- Beautiful, Warm, and Stylish
++- Very easy to care for
++
++Hand wash with cold water and lay flat to dry", @unit_price=#<BigDecimal:7f9cc296cdd0,'0.38E4',9(18)>, @created_at=2016-01-11 20:59:20 UTC, @updated_at=2009-12-09 12:08:04 UTC, @merchant_id=12334871, @unit_price_to_dollars=38.0, @item_repo=#<ItemRepo:0xXXXXXX ...>>], @engine=#<SalesEngine:0xXXXXXX @items=#<ItemRepo:0xXXXXXX ...>, @merchants=#<MerchantRepo:0xXXXXXX @all_merchants=[#<Merchant:0xXXXXXX @id=12336622, @name="rakimagery", @merchant_repo=#<MerchantRepo:0xXXXXXX ...>>, #<Merchant:0xXXXXXX @id=12334871, @name="TheSequinnedOwl", @merchant_repo=#<MerchantRepo:0xXXXXXX ...>>, #<Merchant:0xXXXXXX @id=12336050, @name="DivineDesignCaroline", @merchant_repo=#<MerchantRepo:0xXXXXXX ...>>], @engine=#<SalesEngine:0xXXXXXX ...>, @load_csvs=nil>>, @load_csvs=nil, @items=[]>>], [#<Item:0xXXXXXX @id=263567474, @name="Minty Green Knit Crochet Infinity Scarf", @description="- Super Chunky knit infinity scarf
++- Soft mixture of 97% Acrylic and 3% Viscose
++- Beautiful, Warm, and Stylish
++- Very easy to care for
++
++Hand wash with cold water and lay flat to dry", @unit_price=#<BigDecimal:7f9cc296cdd0,'0.38E4',9(18)>, @created_at=2016-01-11 20:59:20 UTC, @updated_at=2009-12-09 12:08:04 UTC, @merchant_id=12334871, @unit_price_to_dollars=38.0, @item_repo=#<ItemRepo:0xXXXXXX @all_items=[#<Item:0xXXXXXX @id=263567292, @name="Intricate Sunset", @description="&quot;Intricate Sunset&quot; Original by CarolinaLou at Divine Designs by Caroline
++Size: 7.5x10.5in
++Materials: acrylic, canvas board
++Ships from: USA
++Price: $81
++MORE AVAILABLE", @unit_price=#<BigDecimal:7f9cc297d518,'0.61E4',9(18)>, @created_at=2016-01-11 20:57:28 UTC, @updated_at=2006-09-08 18:17:01 UTC, @merchant_id=12336050, @unit_price_to_dollars=61.0, @item_repo=#<ItemRepo:0xXXXXXX ...>>, #<Item:0xXXXXXX @id=263567376, @name="The Gold Coast, Chicago, Illinois", @description="The Gold Coast of Chicago, Illinois 2013
++
++Taken and Edited by rakimagery
++
++This listing is for a canvas print that is gallery-wrapped around a 1.5” wooden stretcher frame. It arrives ready-to-hang right out of the box.
++
++
++Perfect for home or office!", @unit_price=#<BigDecimal:7f9cc2975368,'0.25E5',9(18)>, @created_at=2016-01-11 20:57:57 UTC, @updated_at=2011-12-20 13:29:36 UTC, @merchant_id=12336622, @unit_price_to_dollars=250.0, @item_repo=#<ItemRepo:0xXXXXXX ...>>, #<Item:0xXXXXXX ...>], @engine=#<SalesEngine:0xXXXXXX @items=#<ItemRepo:0xXXXXXX ...>, @merchants=#<MerchantRepo:0xXXXXXX @all_merchants=[#<Merchant:0xXXXXXX @id=12336622, @name="rakimagery", @merchant_repo=#<MerchantRepo:0xXXXXXX ...>>, #<Merchant:0xXXXXXX @id=12334871, @name="TheSequinnedOwl", @merchant_repo=#<MerchantRepo:0xXXXXXX ...>>, #<Merchant:0xXXXXXX @id=12336050, @name="DivineDesignCaroline", @merchant_repo=#<MerchantRepo:0xXXXXXX ...>>], @engine=#<SalesEngine:0xXXXXXX ...>, @load_csvs=nil>>, @load_csvs=nil, @items=[]>>], [#<Item:0xXXXXXX @id=263567292, @name="Intricate Sunset", @description="&quot;Intricate Sunset&quot; Original by CarolinaLou at Divine Designs by Caroline
++Size: 7.5x10.5in
++Materials: acrylic, canvas board
++Ships from: USA
++Price: $81
++MORE AVAILABLE", @unit_price=#<BigDecimal:7f9cc297d518,'0.61E4',9(18)>, @created_at=2016-01-11 20:57:28 UTC, @updated_at=2006-09-08 18:17:01 UTC, @merchant_id=12336050, @unit_price_to_dollars=61.0, @item_repo=#<ItemRepo:0xXXXXXX @all_items=[#<Item:0xXXXXXX ...>, #<Item:0xXXXXXX @id=263567376, @name="The Gold Coast, Chicago, Illinois", @description="The Gold Coast of Chicago, Illinois 2013
++
++Taken and Edited by rakimagery
++
++This listing is for a canvas print that is gallery-wrapped around a 1.5” wooden stretcher frame. It arrives ready-to-hang right out of the box.
++
++
++Perfect for home or office!", @unit_price=#<BigDecimal:7f9cc2975368,'0.25E5',9(18)>, @created_at=2016-01-11 20:57:57 UTC, @updated_at=2011-12-20 13:29:36 UTC, @merchant_id=12336622, @unit_price_to_dollars=250.0, @item_repo=#<ItemRepo:0xXXXXXX ...>>, #<Item:0xXXXXXX @id=263567474, @name="Minty Green Knit Crochet Infinity Scarf", @description="- Super Chunky knit infinity scarf
++- Soft mixture of 97% Acrylic and 3% Viscose
++- Beautiful, Warm, and Stylish
++- Very easy to care for
++
++Hand wash with cold water and lay flat to dry", @unit_price=#<BigDecimal:7f9cc296cdd0,'0.38E4',9(18)>, @created_at=2016-01-11 20:59:20 UTC, @updated_at=2009-12-09 12:08:04 UTC, @merchant_id=12334871, @unit_price_to_dollars=38.0, @item_repo=#<ItemRepo:0xXXXXXX ...>>], @engine=#<SalesEngine:0xXXXXXX @items=#<ItemRepo:0xXXXXXX ...>, @merchants=#<MerchantRepo:0xXXXXXX @all_merchants=[#<Merchant:0xXXXXXX @id=12336622, @name="rakimagery", @merchant_repo=#<MerchantRepo:0xXXXXXX ...>>, #<Merchant:0xXXXXXX @id=12334871, @name="TheSequinnedOwl", @merchant_repo=#<MerchantRepo:0xXXXXXX ...>>, #<Merchant:0xXXXXXX @id=12336050, @name="DivineDesignCaroline", @merchant_repo=#<MerchantRepo:0xXXXXXX ...>>], @engine=#<SalesEngine:0xXXXXXX ...>, @load_csvs=nil>>, @load_csvs=nil, @items=[]>>]]

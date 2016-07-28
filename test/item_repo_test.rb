@@ -6,19 +6,17 @@ class ItemRepoTest < Minitest::Test
 
   def test_returns_all_items
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
-    assert_equal 1367, item_repo.all_items.length
+    assert_equal 4, item_repo.all_items.length
   end
 
-  def test_it_returns_values_when_searched_by_id
+  def test_it_returns_item_when_searched_by_id
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
     description_return = "This is a wooden picture frame made to order in any color you would like. Image not included in purchase.\n\nfor portrait style it is:\n10&quot; tall and 6&quot; wide\n\nFor landscape style it is:\n10&quot; wide and 6&quot; tall"
-    assert_equal "Wooden Picture Frames", item_repo.find_by_id(263565882).name
-    assert_equal description_return, item_repo.find_by_id(263565882).description
-    assert_equal Time.parse("2016-01-11 20:53:42 UTC"), item_repo.find_by_id(263565882).created_at
-    assert_equal 45.00, item_repo.find_by_id(263565882).unit_price_to_dollars
+    assert_instance_of Item, item_repo.find_by_id(263567474)
+
   end
 
-  def test_it_returns_nil_when_searched_by_id
+  def test_it_returns_nil_when_searched_by_invalid_id
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
     assert_equal nil, item_repo.find_by_id(0000000)
   end
@@ -26,73 +24,67 @@ class ItemRepoTest < Minitest::Test
 
   def test_find_by_name_regardless_of_case
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
-    assert_equal "Two tone blue stoneware pot", item_repo.find_by_name("Two tone blue stoneware pot").name
-    assert_equal "Two tone blue stoneware pot", item_repo.find_by_name("two tone blue stoneware pot").name
+    assert_equal "Minty Green Knit Crochet Infinity Scarf", item_repo.find_by_name("Minty Green Knit Crochet Infinity Scarf").name
+    assert_equal "Minty Green Knit Crochet Infinity Scarf", item_repo.find_by_name("minty green KnIt CrOcHet Infinity Scarf").name
   end
 
-  def test_find_by_name_return_nil
+  def test_find_by_name_return_nil_for_invalid_name
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
     assert_equal nil, item_repo.find_by_name("kjadkjashdkjas")
   end
 
   def test_find_by_name_and_return_values
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
-    assert_equal Time.parse("2016-01-11 13:18:58 UTC"), item_repo.find_by_name("Two tone blue stoneware pot").created_at
-    assert_equal "A rounded stoneware pot/bowl with a dark blue glaze and a white/blue glaze.\nA completely unique pot with lots of character\n9.5cm width\n6.5cm height", item_repo.find_by_name("two tone blue stoneware pot").description
-    assert_equal 10.00, item_repo.find_by_name("two tone blue stoneware pot").unit_price_to_dollars
-    assert_equal 12334609, item_repo.find_by_name("two tone blue stoneware pot").merchant_id
-  end
-
-  def test_find_by_name_if_it_starts_with_number
-    item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
-    assert_equal Time.parse("2016-01-11 09:34:06 UTC"), item_repo.find_by_name("510+ realpush icon set").created_at
-    assert_equal 12334141, item_repo.find_by_name("510+ realpush icon set").merchant_id
-    assert_equal 12.00, item_repo.find_by_name("510+ realpush icon set").unit_price_to_dollars
+    assert_equal Time.parse("2016-01-11 20:59:20 UTC"), item_repo.find_by_name("Minty Green Knit Crochet Infinity Scarf").created_at
+    expected_description = "- Super Chunky knit infinity scarf\n- Soft mixture of 97% Acrylic and 3% Viscose\n- Beautiful, Warm, and Stylish\n- Very easy to care for\n\nHand wash with cold water and lay flat to dry"
+    assert_equal expected_description, item_repo.find_by_name("Minty Green Knit Crochet Infinity Scarf").description
+    assert_equal 38.00, item_repo.find_by_name("Minty Green Knit Crochet Infinity Scarf").unit_price_to_dollars
+    assert_equal 12334871, item_repo.find_by_name("Minty Green Knit Crochet Infinity Scarf").merchant_id
   end
 
   def test_all_returns_all_items
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
-    assert_equal 1367, item_repo.all.length
+    assert_equal 4, item_repo.all.length
   end
 
   def test_find_all_with_description
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
-    description = "A LARGE yeti of SOrtS, casually devoURS a COw as the OTHERS WaTch NUmbly."
-    expected = "A large Yeti of sorts, casually devours a cow as the others watch numbly."
+    description = "- Super Chunky knit infinity scarf\n- Soft mixture of 97% Acrylic and 3% Viscose\n- Beautiful, Warm, and Stylish\n- Very easy to care for\n\nHand wash with cold water and lay flat to dry"
+    expected = "- Super Chunky knit infinity scarf\n- Soft mixture of 97% Acrylic and 3% Viscose\n- Beautiful, Warm, and Stylish\n- Very easy to care for\n\nHand wash with cold water and lay flat to dry"
     assert_equal expected, item_repo.find_all_with_description(description).first.description
   end
 
-  def test_find_all_with_description_when_description_is_blank
+  def test_find_all_with_description_when_description_is_not_valid
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
     assert_equal [], item_repo.find_all_with_description("^")
   end
 
   def test_find_all_by_price
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
-    assert_equal 11, item_repo.find_all_by_price(BigDecimal.new(20000)).length
+    assert_equal 1, item_repo.find_all_by_price(BigDecimal.new(6100)).length
   end
 
-  def test_find_all_by_price_when_price_is_empty
+  def test_find_all_by_price_when_price_is_not_valid
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
     assert_equal [], item_repo.find_all_by_price(BigDecimal.new(2000000))
   end
 
   def test_find_all_by_price_in_range
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
-    assert_equal 205, item_repo.find_all_by_price_in_range(1000.00..1500.00).length
+    assert_equal 1, item_repo.find_all_by_price_in_range(6100.00..6200.00).length
   end
 
-  def test_return_an_empty_array_if_price_is_not_range
+  def test_return_an_empty_array_if_price_is_not_in_valid_range
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
     assert_equal [], item_repo.find_all_by_price_in_range(1000000000.00..1500000000000.00)
   end
 
   def test_find_all_by_merchant_id
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
-    assert_equal 20, item_repo.find_all_by_merchant_id(12334195).length
+    assert_equal 2, item_repo.find_all_by_merchant_id(12336622).length
   end
 
-  def test_returns_empty_array_when_no_merchant_id
+  def test_returns_empty_array_when_no_merchant_id_is_invalid
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
     assert_equal [], item_repo.find_all_by_merchant_id(98798798798)
   end

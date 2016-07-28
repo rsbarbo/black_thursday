@@ -47,15 +47,15 @@ class ItemTest < Minitest::Test
     assert_equal 12.00, item.unit_price_to_dollars
   end
 
-  def test_it_returns_items_based_on_id_given_to_item
-    se = SalesEngine.from_csv({:items => "./data/items.csv", :merchants => "./data/merchants.csv"})
-    item = se.items.find_by_id(263395237)
+  def test_it_returns_merchant_based_on_id_given_to_item
+    se = SalesEngine.from_csv({:items => "./test/support/items_test.csv", :merchants => "./test/support/merchants_test.csv"})
+    item = se.items.find_by_id(263567474)
 
     id_result     = item.merchant.id
     name_result   = item.merchant.name
 
-    assert_equal 12334141, id_result
-    assert_equal "jejum", name_result
+    assert_equal 12334871, id_result
+    assert_equal "TheSequinnedOwl", name_result
   end
 
 end
