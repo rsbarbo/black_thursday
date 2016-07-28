@@ -7,12 +7,16 @@ class SalesAnalyst
     @se = sales_engine
   end
 
+  def all_merchant
+     se.merchants.all
+  end
+
   def average_items_per_merchant
-    ((se.items.all.count)/(se.merchants.all.count.to_f)).round(2)
+    ((se.items.all.count)/(all_merchant.count.to_f)).round(2)
   end
 
   def collection_of_items_counts
-    collection  = se.merchants.all.map do |merchant|
+    collection  = all_merchant.map do |merchant|
       merchant.items.count
     end
     collection
@@ -36,23 +40,25 @@ class SalesAnalyst
 
   def merchants_with_high_item_count
     high_count = average_items_per_merchant_standard_deviation + average_items_per_merchant
-    se.merchants.all.find_all do |merchant|
+    all_merchant.find_all do |merchant|
     merchant.items.count > high_count
     end
   end
 
-  def average_item_price_for_merchant(number)
-    items = se.merchants.find_by_id(number).items
-    price_per_unit = items.map(&:unit_price)
-    it = price_per_unit.reduce(:+)/price_per_unit.count
-    it.round(2)
+  def average_item_price_for_merchant(merchant_id)
+    price_per_unit = se.merchants.find_by_id(merchant_id).items.map(&:unit_price)
+    pre_return = (price_per_unit.reduce(:+)/price_per_unit.size).round(2)
+    outcome = (BigDecimal.new(pre_return)).round(0) / 100
   end
 
   def average_average_price_per_merchant
-    t = se.merchants.all.reduce(0) do |sum, merchant|
+    sum_of_averages = all_merchant.reduce(0) do |sum, merchant|
       sum + average_item_price_for_merchant(merchant.id)
-    end/se.merchants.all.count
-    t.floor(2)
+    end
+    outcome = sum_of_averages / all_merchant.count
+    outcome.floor(2)
   end
+
+  def 
 
 end
