@@ -45,7 +45,7 @@ class MerchantRepoTest < Minitest::Test
     assert_equal "DivineDesignCaroline", merchant_repo.find_all_by_name("Di").first.name
   end
 
-  def test_find_all_by_name_return_empty_array_when_doesnt_match
+  def test_find_all_by_name_return_empty_array_when_does_not_match
     merchant_repo = MerchantRepo.new("./test/support/merchants_test.csv", nil)
     assert_equal [], merchant_repo.find_all_by_name("dsdsdsds")
   end

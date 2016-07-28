@@ -54,7 +54,7 @@ class ItemRepoTest < Minitest::Test
     assert_equal expected, item_repo.find_all_with_description(description).first.description
   end
 
-  def test_find_all_with_description_when_description_is_blank
+  def test_find_all_with_description_when_description_is_not_valid
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
     assert_equal [], item_repo.find_all_with_description("^")
   end
@@ -64,7 +64,7 @@ class ItemRepoTest < Minitest::Test
     assert_equal 1, item_repo.find_all_by_price(BigDecimal.new(6100)).length
   end
 
-  def test_find_all_by_price_when_price_is_empty
+  def test_find_all_by_price_when_price_is_not_valid
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
     assert_equal [], item_repo.find_all_by_price(BigDecimal.new(2000000))
   end
@@ -74,7 +74,7 @@ class ItemRepoTest < Minitest::Test
     assert_equal 1, item_repo.find_all_by_price_in_range(6100.00..6200.00).length
   end
 
-  def test_return_an_empty_array_if_price_is_not_range
+  def test_return_an_empty_array_if_price_is_not_in_valid_range
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
     assert_equal [], item_repo.find_all_by_price_in_range(1000000000.00..1500000000000.00)
   end
@@ -84,7 +84,7 @@ class ItemRepoTest < Minitest::Test
     assert_equal 2, item_repo.find_all_by_merchant_id(12336622).length
   end
 
-  def test_returns_empty_array_when_no_merchant_id
+  def test_returns_empty_array_when_no_merchant_id_is_invalid
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
     assert_equal [], item_repo.find_all_by_merchant_id(98798798798)
   end
