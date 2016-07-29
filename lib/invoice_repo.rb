@@ -40,7 +40,12 @@ class InvoiceRepo
       invoice.merchant_id == merchant_id
     end
   end
-#find_all_by_merchant_id - returns either [] or one or more matches which have a matching merchant ID
+
+  def find_all_by_status(status)
+    all_invoices.find_all do |invoice|
+      invoice.status == status
+    end
+  end
 #find_all_by_status - returns either [] or one or more matches which have a matching status
 
 end
