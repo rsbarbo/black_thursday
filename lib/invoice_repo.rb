@@ -46,6 +46,5 @@ class InvoiceRepo
       invoice.status == status.to_sym
     end
   end
-#find_all_by_status - returns either [] or one or more matches which have a matching status
 
 end
