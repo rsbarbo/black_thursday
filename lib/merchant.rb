@@ -9,7 +9,7 @@ class Merchant
     @name = row[:name]
     @merchant_repo = merchant_repo
   end
-  
+
   def items
     merchant_repo.find_merchant_by_item_id(id)
   end

@@ -20,7 +20,7 @@ class MerchantTest < Minitest::Test
   end
 
   def test_it_returns_items_based_on_id_given_to_merchant
-    se = SalesEngine.from_csv({:items => "./data/items.csv", :merchants => "./data/merchants.csv"})
+    se = SalesEngine.from_csv({:items => "./data/items.csv", :merchants => "./data/merchants.csv", :invoices => "./data/invoices.csv"})
     merchant = se.merchants.find_by_id(12334141)
 
     assert_instance_of Item, merchant.items.first

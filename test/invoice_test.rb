@@ -13,7 +13,7 @@ class InvoiceTest < Minitest::Test
       :status      => "pending",
       :created_at  => Time.now,
       :updated_at  => Time.now,
-      })
+      }, nil)
   end
 
   def test_it_returns_id
@@ -29,7 +29,7 @@ class InvoiceTest < Minitest::Test
   end
 
   def test_it_returns_invoice_status
-    assert_equal "pending", invoice.status
+    assert_equal :pending, invoice.status
   end
 
   def test_returns_created_at

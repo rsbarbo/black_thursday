@@ -48,7 +48,7 @@ class ItemTest < Minitest::Test
   end
 
   def test_it_returns_merchant_based_on_id_given_to_item
-    se = SalesEngine.from_csv({:items => "./test/support/items_test.csv", :merchants => "./test/support/merchants_test.csv"})
+    se = SalesEngine.from_csv({:items => "./test/support/items_test.csv", :merchants => "./test/support/merchants_test.csv", :invoices => "./data/invoices.csv"})
     item = se.items.find_by_id(263567474)
 
     id_result     = item.merchant.id
