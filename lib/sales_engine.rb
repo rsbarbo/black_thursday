@@ -14,9 +14,3 @@ class SalesEngine
   end
 
 end
-
-if __FILE__ == $0
-  se = SalesEngine.from_csv({:items => "./data/items.csv", :merchants => "./data/merchants.csv"})
-  merchant = se.merchants.find_by_id(12334146)
-  item = se.items.find_by_id(263395237)
-end

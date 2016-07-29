@@ -26,7 +26,7 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_deviation_calculator
-    assert_equal 2.24, sa.deviation_calculator([1,2,3,4,5], 2.88)
+    assert_equal 2.24, sa.merchant_deviation_calculator([1,2,3,4,5], 2.88)
   end
 
   def test_it_can_return_merchants_with_most_items_to_sell
@@ -34,8 +34,16 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_it_returns_the_average_price_of_merchants_items
-    assert_equal 25000.0, sa.average_item_price_for_merchant(12336622)
+    assert_equal 250.00, sa.average_item_price_for_merchant(12336622)
   end
 
+  def test_average_average_price_per_merchant
+    assert_equal 116.33, sa.average_average_price_per_merchant
+  end
+
+  def test_return_golden_items
+    #will return an empty array, because our sample is too small
+    assert_equal [], sa.golden_items
+  end
 
 end

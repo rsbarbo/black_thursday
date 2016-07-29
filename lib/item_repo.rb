@@ -11,7 +11,7 @@ class ItemRepo
     @load_csvs = load_csvs(file_path)
     @items = []
   end
-
+  
   def load_csvs(file_path)
     content = CSV.open(file_path, headers: true, header_converters: :symbol)
     content.each do |row|
@@ -30,7 +30,7 @@ class ItemRepo
   end
 
   def find_by_id(id_number)
-      all_items.find do |item|
+    all_items.find do |item|
       item.id == id_number
     end
   end
@@ -60,10 +60,10 @@ class ItemRepo
     end
   end
 
-def find_items_by_merchant_id(merchant_id)
+  def find_items_by_merchant_id(merchant_id)
     engine.merchants.all_merchants.select do |merchant|
       merchant.id == merchant_id
-  end.first
-end
+    end.first
+  end
 
 end
