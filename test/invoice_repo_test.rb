@@ -33,8 +33,8 @@ class InvoiceRepoTest < Minitest::Test
 
   def test_find_all_by_status
     invoice_repo = InvoiceRepo.new("./test/support/invoices_test.csv", nil)
-    assert_equal "", invoice_repo.find_all_by_status("pending").length
-    assert_equal :pending, invoice_repo.find_all_by_status("pending").first
+    assert_equal 58, invoice_repo.find_all_by_status("pending").length
+    assert_equal :pending, invoice_repo.find_all_by_status("pending").first.status
   end
 
   def test_find_all_by_status_return_empty_array_when_does_not_match
