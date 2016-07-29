@@ -1,5 +1,5 @@
 require_relative "../lib/sales_engine"
-
+require "pry"
 class SalesAnalyst
   attr_reader :se
 
@@ -59,6 +59,5 @@ class SalesAnalyst
     outcome.floor(2)
   end
 
-  def 
 
 end
