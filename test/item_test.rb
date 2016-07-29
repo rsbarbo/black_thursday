@@ -13,8 +13,8 @@ class ItemTest < Minitest::Test
       :name        => "Pencil",
       :description => "You can use it to write things",
       :unit_price  => BigDecimal.new(1200),
-      :created_at  => "2016-07-26 08:05:03 -0600",
-      :updated_at  => "2016-07-26 08:05:03 -0600",
+      :created_at  => Time.now,
+      :updated_at  => Time.now,
       :unit_price_to_dollars  => :unit_price,
       }, nil)
   end
@@ -36,11 +36,11 @@ class ItemTest < Minitest::Test
   end
 
   def test_returns_created_at
-    assert_equal Time.parse("2016-07-26 08:05:03 -0600"), item.created_at
+    assert_equal Time.parse(Time.now.to_s), item.created_at
   end
 
   def test_returns_updated_at
-    assert_equal Time.parse("2016-07-26 08:05:03 -0600"), item.updated_at
+    assert_equal Time.parse(Time.now.to_s), item.updated_at
   end
 
   def test_returns_unit_price_to_dollar
@@ -48,7 +48,7 @@ class ItemTest < Minitest::Test
   end
 
   def test_it_returns_merchant_based_on_id_given_to_item
-    se = SalesEngine.from_csv({:items => "./test/support/items_test.csv", :merchants => "./test/support/merchants_test.csv"})
+    se = SalesEngine.from_csv({:items => "./test/support/items_test.csv", :merchants => "./test/support/merchants_test.csv", :invoices => "./data/invoices.csv"})
     item = se.items.find_by_id(263567474)
 
     id_result     = item.merchant.id
