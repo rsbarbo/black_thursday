@@ -11,6 +11,10 @@ class SalesAnalyst
     se.merchants.all
   end
 
+  def all_items
+    se.items.all
+  end
+
   def average_items_per_merchant
     ((se.items.all.count)/(all_merchant.count.to_f)).round(2)
   end
@@ -28,10 +32,10 @@ class SalesAnalyst
 
   def average_items_per_merchant_standard_deviation
     avg_item_p_merchant = average_items_per_merchant
-    deviation_calculator(collection_of_items_counts, avg_item_p_merchant)
+    merchant_deviation_calculator(collection_of_items_counts, avg_item_p_merchant)
   end
 
-  def deviation_calculator(collection_of_items_counts, avg_item_p_merchant)
+  def merchant_deviation_calculator(collection_of_items_counts, avg_item_p_merchant)
     pre_deviation = (collection_of_items_counts.reduce(0) do |accounter, average_num|
       accounter + ((average_num - avg_item_p_merchant) ** 2)
     end)/(items_qty - 1).to_f
@@ -59,7 +63,21 @@ class SalesAnalyst
     outcome.floor(2)
   end
 
+  def average_item_price_standard_deviation
+    mean = average_average_price_per_merchant
+    items = all_items.map(&:unit_price)
+    pre_deviation = (items.reduce(0) do |acc, avg_num|
+      acc + ((avg_num - mean) ** 2)
+    end)/(items.count - 1).to_f
+    Math.sqrt(pre_deviation).round(2)
+  end
+
   def golden_items
+    deviation = (average_item_price_standard_deviation * 2)
+    golden_price = deviation + average_average_price_per_merchant
+    all_items.find_all do |item|
+      item.unit_price > golden_price
+    end
   end
 
 end
