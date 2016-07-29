@@ -1,5 +1,6 @@
 require_relative "../lib/invoice"
 require "csv"
+require "pry"
 
 class InvoiceRepo
   attr_reader :engine
@@ -27,5 +28,19 @@ class InvoiceRepo
       invoice.id == id_number
     end
   end
+
+  def find_all_by_customer_id(customer_id)
+    all_invoices.find_all do |invoice|
+      invoice.customer_id == customer_id
+    end
+  end
+
+  def find_all_by_merchant_id(merchant_id)
+    all_invoices.find_all do |invoice|
+      invoice.merchant_id == merchant_id
+    end
+  end
+#find_all_by_merchant_id - returns either [] or one or more matches which have a matching merchant ID
+#find_all_by_status - returns either [] or one or more matches which have a matching status
 
 end
