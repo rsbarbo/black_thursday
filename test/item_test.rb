@@ -32,7 +32,7 @@ class ItemTest < Minitest::Test
   end
 
   def test_returns_unit_price
-    assert_equal BigDecimal.new(1200), item.unit_price
+    assert_equal BigDecimal.new(12), item.unit_price
   end
 
   def test_returns_created_at
@@ -44,7 +44,7 @@ class ItemTest < Minitest::Test
   end
 
   def test_returns_unit_price_to_dollar
-    assert_equal 12.00, item.unit_price_to_dollars
+    assert_equal 0.12, item.unit_price_to_dollars
   end
 
   def test_it_returns_merchant_based_on_id_given_to_item

@@ -1,5 +1,5 @@
 require_relative "../lib/sales_engine"
-require "pry"
+
 class SalesAnalyst
   attr_reader :se
 
@@ -48,7 +48,6 @@ class SalesAnalyst
   def average_item_price_for_merchant(merchant_id)
     price_per_unit = se.merchants.find_by_id(merchant_id).items.map(&:unit_price)
     pre_return = (price_per_unit.reduce(:+)/price_per_unit.size).round(2)
-    outcome = (BigDecimal.new(pre_return)).round(0) / 100
   end
 
   def average_average_price_per_merchant
