@@ -11,7 +11,6 @@ class ItemRepoTest < Minitest::Test
 
   def test_it_returns_item_when_searched_by_id
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
-    description_return = "This is a wooden picture frame made to order in any color you would like. Image not included in purchase.\n\nfor portrait style it is:\n10&quot; tall and 6&quot; wide\n\nFor landscape style it is:\n10&quot; wide and 6&quot; tall"
     assert_instance_of Item, item_repo.find_by_id(263567474)
 
   end

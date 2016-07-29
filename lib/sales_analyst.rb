@@ -8,7 +8,7 @@ class SalesAnalyst
   end
 
   def all_merchant
-     se.merchants.all
+    se.merchants.all
   end
 
   def average_items_per_merchant
@@ -41,13 +41,14 @@ class SalesAnalyst
   def merchants_with_high_item_count
     high_count = average_items_per_merchant_standard_deviation + average_items_per_merchant
     all_merchant.find_all do |merchant|
-    merchant.items.count > high_count
+      merchant.items.count > high_count
     end
   end
 
   def average_item_price_for_merchant(merchant_id)
     price_per_unit = se.merchants.find_by_id(merchant_id).items.map(&:unit_price)
-    pre_return = (price_per_unit.reduce(:+)/price_per_unit.size).round(2)
+    pre_return = (price_per_unit.reduce(:+)/price_per_unit.size)
+    pre_return.round(2)
   end
 
   def average_average_price_per_merchant
@@ -58,5 +59,7 @@ class SalesAnalyst
     outcome.floor(2)
   end
 
+  def golden_items
+  end
 
 end
