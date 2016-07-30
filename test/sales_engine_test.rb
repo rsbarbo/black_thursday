@@ -2,13 +2,23 @@ require_relative '../test_helper'
 require_relative '../lib/sales_engine'
 
 class SalesEngineTest < Minitest::Test
+  attr_reader :input
 
-  #
-  # def test_from_csv_return_file_path
-  #   expected = {:items=>"./data/items.csv", :merchants=>"./data/merchants.csv"}
-  #   input = {:items=>"./data/items.csv", :merchants=>"./data/merchants.csv"}
-  #   assert_equal SalesEngine.from_csv(""), ""
-  # end
+  def setup
+  @input = {:items=>"./test/support/items_test.csv", :merchants=>"./test/support/merchants_test.csv", :invoices=>"./test/support/invoices_test.csv"}
+  end
+
+def test_sales_engine_has_access_to_item_repo_class
+  assert_equal(ItemRepo, SalesEngine.new(input).items.class)
+end
+
+def test_sales_engine_has_access_to_merchant_repo_class
+  assert_equal(MerchantRepo, SalesEngine.new(input).merchants.class)
+end
+
+def test_sales_engine_has_access_to_invoice_repo_class
+  assert_equal(InvoiceRepo, SalesEngine.new(input).invoices.class)
+end
 
 
 end
