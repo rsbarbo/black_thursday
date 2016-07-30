@@ -42,7 +42,6 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_return_golden_items
-    #will return an empty array, because our sample is too small
     assert_equal [], sa.golden_items
   end
 

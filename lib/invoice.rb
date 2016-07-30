@@ -15,4 +15,9 @@ class Invoice
     @invoice_repo = invoice_repo
   end
 
+  def merchant
+    invoice_repo.find_invoices_by_merchant_id(merchant_id)
+  end
+
+
 end

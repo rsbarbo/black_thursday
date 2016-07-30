@@ -1,12 +1,23 @@
-require "./lib/invoice_repo"
+require "csv"
 require "./test_helper"
-
+require_relative "../lib/invoice_repo"
+require_relative '../lib/sales_engine'
 
 class InvoiceRepoTest < Minitest::Test
+
+  def test_returns_all
+    invoice_repo = InvoiceRepo.new("./test/support/invoices_test.csv", nil)
+    assert_equal 200, invoice_repo.all.length
+  end
 
   def test_returns_all_items
     invoice_repo = InvoiceRepo.new("./test/support/invoices_test.csv", nil)
     assert_equal 200, invoice_repo.all_invoices.length
+  end
+
+  def test_returns_all_items
+    invoice_repo = InvoiceRepo.new("./test/support/invoices_test.csv", nil)
+    assert_equal 12335938, invoice_repo.find_by_id(1).merchant_id
   end
 
   def test_find_all_by_customer_id
@@ -40,6 +51,12 @@ class InvoiceRepoTest < Minitest::Test
   def test_find_all_by_status_return_empty_array_when_does_not_match
     invoice_repo = InvoiceRepo.new("./test/support/invoices_test.csv", nil)
     assert_equal [], invoice_repo.find_all_by_status("outstanding")
+  end
+
+  def test_something
+    se = SalesEngine.from_csv({:items => "./test/support/items_test.csv", :merchants => "./test/support/merchants_test.csv", :invoices => "./test/support/invoices_test.csv"})
+    invoice = se.invoices.find_by_id(1)
+    assert_equal nil, invoice.merchant
   end
 
 end

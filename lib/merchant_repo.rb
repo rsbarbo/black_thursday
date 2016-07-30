@@ -40,9 +40,16 @@ class MerchantRepo
     end
   end
 
-  def find_merchant_by_item_id(item_id)
+  def find_merchant_item_through_item_id(item_id)
     engine.items.all_items.select do |item|
       item.merchant_id == item_id
     end
   end
+
+  def find_merchant_invoices_through_item_id(item_id)
+    engine.invoices.all_invoices.select do |invoice|
+      invoice.merchant_id == item_id
+    end
+  end
+
 end

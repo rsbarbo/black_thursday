@@ -11,6 +11,11 @@ class Merchant
   end
 
   def items
-    merchant_repo.find_merchant_by_item_id(id)
+    merchant_repo.find_merchant_item_through_item_id(id)
   end
+
+  def invoices
+    merchant_repo.find_merchant_invoices_through_item_id(id)
+  end
+
 end

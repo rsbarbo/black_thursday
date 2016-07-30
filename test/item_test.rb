@@ -1,7 +1,6 @@
 require_relative '../test_helper'
 require_relative '../lib/item'
-require_relative '../lib/sales_engine'
-require 'csv'
+
 
 
 class ItemTest < Minitest::Test
@@ -45,17 +44,6 @@ class ItemTest < Minitest::Test
 
   def test_returns_unit_price_to_dollar
     assert_equal 0.12, item.unit_price_to_dollars
-  end
-
-  def test_it_returns_merchant_based_on_id_given_to_item
-    se = SalesEngine.from_csv({:items => "./test/support/items_test.csv", :merchants => "./test/support/merchants_test.csv", :invoices => "./data/invoices.csv"})
-    item = se.items.find_by_id(263567474)
-
-    id_result     = item.merchant.id
-    name_result   = item.merchant.name
-
-    assert_equal 12334871, id_result
-    assert_equal "TheSequinnedOwl", name_result
   end
 
 end
