@@ -15,6 +15,10 @@ class SalesAnalyst
     se.items.all
   end
 
+  def all_invoices
+    se.invoices.all
+  end
+
   def average_items_per_merchant
     ((se.items.all.count)/(all_merchant.count.to_f)).round(2)
   end
@@ -82,7 +86,7 @@ class SalesAnalyst
   end
 
   def average_invoices_per_merchant
-    ((se.invoices.all.count)/(all_merchant.count.to_f)).round(2)
+    ((all_invoices.count)/(all_merchant.count.to_f)).round(2)
   end
 
   def collct_of_invs_cnts
@@ -114,6 +118,33 @@ class SalesAnalyst
     all_merchant.find_all do |merchant|
       merchant.invoices.count > high_inv_count
     end
+  end
+
+  def bottom_merchants_by_invoice_count
+    deviation = (average_invoices_per_merchant_standard_deviation * 2)
+    lower_inv_count = average_invoices_per_merchant - deviation
+    all_merchant.find_all do |merchant|
+      merchant.invoices.count < lower_inv_count
+    end
+  end
+
+  def formatting_inv_cnt_per_day
+    all_invoices.reduce(Hash.new(0)) do |result, invoices|
+      invoice_day = invoices.created_at.strftime("%A")
+      result[invoice_day] += 1
+      result
+    end
+  end
+
+  def top_day_deviation_calculator
+    avg_inv_per_day = (all_invoices.count / 7).to_f
+    day_totals = formatting_inv_cnt_per_day.values
+    pre_deviation = (day_totals.reduce(0) do |sum, avg_num|
+      sum + ((avg_num - avg_inv_per_day) ** 2)
+    end)/(day_totals.count - 1).to_f
+    Math.sqrt(pre_deviation).round(2)
+
+
   end
 
 end
