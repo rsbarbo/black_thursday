@@ -65,10 +65,10 @@ class SalesAnalyst
   end
 
   def average_item_price_standard_deviation
-    mean = average_average_price_per_merchant
+    avg_avg_p_merchant = average_average_price_per_merchant
     items = all_items.map(&:unit_price)
-    pre_deviation = (items.reduce(0) do |acc, avg_num|
-      acc + ((avg_num - mean) ** 2)
+    pre_deviation = (items.reduce(0) do |accounter, avg_num|
+      accounter + ((avg_num - avg_avg_p_merchant) ** 2)
     end)/(items.count - 1).to_f
     Math.sqrt(pre_deviation).round(2)
   end
@@ -78,6 +78,41 @@ class SalesAnalyst
     golden_price = deviation + average_average_price_per_merchant
     all_items.find_all do |item|
       item.unit_price > golden_price
+    end
+  end
+
+  def average_invoices_per_merchant
+    ((se.invoices.all.count)/(all_merchant.count.to_f)).round(2)
+  end
+
+  def collct_of_invs_cnts
+    collection  = all_merchant.map do |merchant|
+      merchant.invoices.count
+    end
+    collection
+  end
+
+  def inv_qty
+    collct_of_invs_cnts.count
+  end
+
+  def average_invoices_per_merchant_standard_deviation
+    avg_inv_p_mrchnt = average_invoices_per_merchant
+    invoice_deviation_calculator(collct_of_invs_cnts, avg_inv_p_mrchnt)
+  end
+
+  def invoice_deviation_calculator(collct_of_invs_cnts, average_invs_p_merchant)
+    pre_deviation = (collct_of_invs_cnts.reduce(0) do |accounter, average_num|
+      accounter + ((average_num - average_invs_p_merchant) ** 2)
+    end)/(inv_qty - 1).to_f
+    Math.sqrt(pre_deviation).round(2)
+  end
+
+  def top_merchants_by_invoice_count
+    deviation = (average_invoices_per_merchant_standard_deviation * 2)
+    high_inv_count = deviation + average_invoices_per_merchant
+    all_merchant.find_all do |merchant|
+      merchant.invoices.count > high_inv_count
     end
   end
 

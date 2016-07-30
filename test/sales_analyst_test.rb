@@ -45,4 +45,16 @@ class SalesAnalystTest < Minitest::Test
     assert_equal [], sa.golden_items
   end
 
+  def test_returns_number_of_avg_invoices_per_merchant
+    assert_equal 66.67, sa.average_invoices_per_merchant
+  end
+
+  def test_it_returns_avg_invoices_per_merchant_std_dev
+    assert_equal 81.65, sa.average_invoices_per_merchant_standard_deviation
+  end
+
+  def test_it_returns_top_merchants_by_invoice_count
+    assert_equal [], sa.top_merchants_by_invoice_count
+  end
+
 end
