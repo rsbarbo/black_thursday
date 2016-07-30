@@ -14,7 +14,7 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_items_collection_of_items_counts
-    assert_equal [2, 1, 1], sa.collection_of_items_counts
+    assert_equal [2, 1, 1], sa.collct_of_itms_cnts
   end
 
   def test_it_can_count_all_items
@@ -42,7 +42,6 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_return_golden_items
-    #will return an empty array, because our sample is too small
     assert_equal [], sa.golden_items
   end
 

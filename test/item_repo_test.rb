@@ -1,5 +1,7 @@
-require "./lib/item_repo"
 require "./test_helper"
+require "./lib/item_repo"
+require_relative '../lib/sales_engine'
+require 'csv'
 
 
 class ItemRepoTest < Minitest::Test
@@ -86,6 +88,12 @@ class ItemRepoTest < Minitest::Test
   def test_returns_empty_array_when_no_merchant_id_is_invalid
     item_repo = ItemRepo.new("./test/support/items_test.csv", nil)
     assert_equal [], item_repo.find_all_by_merchant_id(98798798798)
+  end
+
+  def test_it_returns_merchant_based_on_id_given_to_item
+    se = SalesEngine.from_csv({:items => "./test/support/items_test.csv", :merchants => "./test/support/merchants_test.csv", :invoices => "./test/support/invoices_test.csv"})
+    item = se.items.find_by_id(263567474)
+    assert_instance_of Merchant, item.merchant
   end
 
 end

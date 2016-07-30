@@ -1,6 +1,5 @@
 require_relative "../lib/invoice"
 require "csv"
-require "pry"
 
 class InvoiceRepo
   attr_reader :engine
@@ -45,6 +44,12 @@ class InvoiceRepo
     all_invoices.find_all do |invoice|
       invoice.status == status.to_sym
     end
+  end
+
+  def find_invoices_by_merchant_id(merchant_id)
+    engine.merchants.all_merchants.select do |merchant|
+      merchant.id == merchant_id
+    end.first
   end
 
 end

@@ -19,7 +19,7 @@ class SalesAnalyst
     ((se.items.all.count)/(all_merchant.count.to_f)).round(2)
   end
 
-  def collection_of_items_counts
+  def collct_of_itms_cnts
     collection  = all_merchant.map do |merchant|
       merchant.items.count
     end
@@ -27,31 +27,32 @@ class SalesAnalyst
   end
 
   def items_qty
-    collection_of_items_counts.count
+    collct_of_itms_cnts.count
   end
 
   def average_items_per_merchant_standard_deviation
-    avg_item_p_merchant = average_items_per_merchant
-    merchant_deviation_calculator(collection_of_items_counts, avg_item_p_merchant)
+    avg_itm_p_mrchnt = average_items_per_merchant
+    merchant_deviation_calculator(collct_of_itms_cnts, avg_itm_p_mrchnt)
   end
 
-  def merchant_deviation_calculator(collection_of_items_counts, avg_item_p_merchant)
-    pre_deviation = (collection_of_items_counts.reduce(0) do |accounter, average_num|
-      accounter + ((average_num - avg_item_p_merchant) ** 2)
+  def merchant_deviation_calculator(collct_of_itms_cnts, avg_itm_p_mrchnt)
+    pre_deviation = (collct_of_itms_cnts.reduce(0) do |accounter, average_num|
+      accounter + ((average_num - avg_itm_p_mrchnt) ** 2)
     end)/(items_qty - 1).to_f
     Math.sqrt(pre_deviation).round(2)
   end
 
   def merchants_with_high_item_count
-    high_count = average_items_per_merchant_standard_deviation + average_items_per_merchant
+    high_count = average_items_per_merchant_standard_deviation +
+    average_items_per_merchant
     all_merchant.find_all do |merchant|
       merchant.items.count > high_count
     end
   end
 
   def average_item_price_for_merchant(merchant_id)
-    price_per_unit = se.merchants.find_by_id(merchant_id).items.map(&:unit_price)
-    pre_return = (price_per_unit.reduce(:+)/price_per_unit.size)
+    prc_per_unit = se.merchants.find_by_id(merchant_id).items.map(&:unit_price)
+    pre_return = (prc_per_unit.reduce(:+)/prc_per_unit.size)
     pre_return.round(2)
   end
 
