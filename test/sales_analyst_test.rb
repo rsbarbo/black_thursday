@@ -45,4 +45,39 @@ class SalesAnalystTest < Minitest::Test
     assert_equal [], sa.golden_items
   end
 
+  def test_returns_number_of_avg_invoices_per_merchant
+    assert_equal 66.67, sa.average_invoices_per_merchant
+  end
+
+  def test_it_returns_avg_invoices_per_merchant_std_dev
+    assert_equal 81.65, sa.average_invoices_per_merchant_standard_deviation
+  end
+
+  def test_it_returns_top_merchants_by_invoice_count
+    assert_equal [], sa.top_merchants_by_invoice_count
+  end
+
+  def test_it_can_return_lowest_merchants_by_inv_count
+    assert_equal [], sa.bottom_merchants_by_invoice_count
+  end
+
+  def test_it_returns_invoice_count_per_day
+    expected = {"Saturday"=>30, "Friday"=>35, "Wednesday"=>20, "Monday"=>26, "Sunday"=>33, "Tuesday"=>33, "Thursday"=>23}
+    assert_equal expected, sa.formatting_inv_cnt_per_day
+  end
+
+  def test_it_returns_top_day_deviation
+    assert_equal 5.72, sa.top_day_deviation_calculator
+  end
+
+  def test_it_returns_top_days_by_inv_count
+    assert_equal ["Friday"], sa.top_days_by_invoice_count
+  end
+
+  def test_return_percentage_of_invoice_based_on_status
+    assert_equal 29.00, sa.invoice_status(:pending)
+    assert_equal 59.50, sa.invoice_status(:shipped)
+    assert_equal 11.50, sa.invoice_status(:returned)
+  end
+
 end
