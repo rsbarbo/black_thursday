@@ -14,7 +14,7 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_items_collection_of_items_counts
-    assert_equal [2, 1, 1], sa.collection_of_items_counts
+    assert_equal [2, 1, 1], sa.collct_of_itms_cnts
   end
 
   def test_it_can_count_all_items
