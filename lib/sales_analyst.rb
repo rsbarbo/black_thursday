@@ -1,7 +1,7 @@
 require_relative "../lib/sales_engine"
 
 class SalesAnalyst
-  attr_reader :se
+  attr_reader :se, :avg_inv_per_day
 
   def initialize(sales_engine)
     @se = sales_engine
@@ -137,14 +137,26 @@ class SalesAnalyst
   end
 
   def top_day_deviation_calculator
-    avg_inv_per_day = (all_invoices.count / 7).to_f
+    @avg_inv_per_day = (all_invoices.count / 7).to_f
     day_totals = formatting_inv_cnt_per_day.values
     pre_deviation = (day_totals.reduce(0) do |sum, avg_num|
       sum + ((avg_num - avg_inv_per_day) ** 2)
     end)/(day_totals.count - 1).to_f
     Math.sqrt(pre_deviation).round(2)
+  end
 
+  def top_days_by_invoice_count
+    deviation = top_day_deviation_calculator
+    most_selling_day = formatting_inv_cnt_per_day.find_all do |wkday, count|
+      count > (deviation + avg_inv_per_day)
+    end
+    most_selling_day.map {|wkday, count| wkday}
+  end
 
+  def invoice_status(status)
+    invoices = se.invoices.find_all_by_status(status)
+    result = ((invoices.count.to_f)/(all_invoices.count))
+    (result * 100).round(2)
   end
 
 end

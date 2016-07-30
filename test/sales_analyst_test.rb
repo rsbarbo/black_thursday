@@ -71,7 +71,13 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_it_returns_top_days_by_inv_count
-    skip
-    assert_equal "", sa.top_days_by_invoice_count
+    assert_equal ["Friday"], sa.top_days_by_invoice_count
   end
+
+  def test_return_percentage_of_invoice_based_on_status
+    assert_equal 29.00, sa.invoice_status(:pending)
+    assert_equal 59.50, sa.invoice_status(:shipped)
+    assert_equal 11.50, sa.invoice_status(:returned)
+  end
+
 end
