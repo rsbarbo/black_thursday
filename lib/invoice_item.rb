@@ -3,21 +3,18 @@ require 'time'
 
 class InvoiceItem
 
-  attr_reader :id, :customer_id, :merchant_id,
-  :status, :created_at, :updated_at, :invoice_repo
+  attr_reader :id, :item_id, :invoice_id,
+  :quantity, :unit_price, :created_at, :updated_at, :invoice_item_repo
 
-  def initialize(row, invoice_repo)
+  def initialize(row, invoice_item_repo)
     @id = row[:id].to_i
-    @customer_id = row[:customer_id].to_i
-    @merchant_id = row[:merchant_id].to_i
-    @status = row[:status].to_sym
+    @item_id = row[:item_id].to_i
+    @invoice_id = row[:invoice_id].to_i
+    @quantity = row[:quantity].to_i
+    @unit_price = BigDecimal.new(row[:unit_price]) / 100
     @created_at = Time.parse(row[:created_at].to_s)
     @updated_at = Time.parse(row[:updated_at].to_s)
-    @invoice_repo = invoice_repo
-  end
-
-  def merchant
-    invoice_repo.find_invoices_by_merchant_id(merchant_id)
+    @invoice_item_repo = invoice_item_repo
   end
 
 end

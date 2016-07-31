@@ -21,5 +21,5 @@ class InvoiceItemRepo
   def all
     all_invoice_items
   end
-  
+
 end
