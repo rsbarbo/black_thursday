@@ -2,7 +2,7 @@ require_relative "../lib/customer"
 require "csv"
 
 class CustomerRepo
-  attr_reader :engine
+  attr_reader   :engine
   attr_accessor :all_customers
 
   def initialize(file_path, sales_engine)
@@ -29,13 +29,13 @@ class CustomerRepo
   end
 
   def find_all_by_first_name(f_name)
-    all_customers.find do |customer|
+    all_customers.find_all do |customer|
       customer.first_name.downcase.include?(f_name.downcase)
     end
   end
 
   def find_all_by_last_name(l_name)
-    all_customers.find do |customer|
+    all_customers.find_all do |customer|
       customer.last_name.downcase.include?(l_name.downcase)
     end
   end

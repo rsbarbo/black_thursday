@@ -2,16 +2,13 @@ require "csv"
 require "./test_helper"
 require_relative "../lib/invoice_item_repo"
 require_relative '../lib/sales_engine'
+require_relative '../test/test_supporter'
 
 class TransactionRepoTest < Minitest::Test
+  attr_reader :se
 
   def setup
-    @se = SalesEngine.from_csv({:items=>"./test/support/items_test.csv",
-                                :merchants=>"./test/support/merchants_test.csv",
-                                :invoices=>"./test/support/invoices_test.csv",
-                                :invoice_items=>"./test/support/invoice_items_test.csv",
-                                :transactions=>"./test/support/transactions_test.csv",
-                                :customers=>"./test/support/customers_test.csv"})
+    @se = Supporter.new.se
   end
 
   def test_it_returns_all_known_transaction_instances
