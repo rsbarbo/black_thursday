@@ -5,7 +5,7 @@ class InvoiceItem
 
   attr_reader :id, :item_id, :invoice_id,
   :quantity, :unit_price, :created_at, :updated_at,
-  :invoice_item_repo, :unit_price_to_dollars
+  :invoice_item_repo
 
   def initialize(row, invoice_item_repo)
     @id = row[:id].to_i
@@ -16,7 +16,11 @@ class InvoiceItem
     @created_at = Time.parse(row[:created_at].to_s)
     @updated_at = Time.parse(row[:updated_at].to_s)
     @invoice_item_repo = invoice_item_repo
-    @unit_price_to_dollars = unit_price.to_f / 100
+
+  end
+
+  def unit_price_to_dollars
+    unit_price.to_f / 100
   end
 
 end
