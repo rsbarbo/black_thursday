@@ -14,7 +14,7 @@ class InvoiceItemRepo
   def load_csvs(file_path)
     content = CSV.open(file_path, headers: true, header_converters: :symbol)
     content.each do |row|
-      all_invoices << InvoiceItem.new(row, self)
+      all_invoice_items << InvoiceItem.new(row, self)
     end
   end
 

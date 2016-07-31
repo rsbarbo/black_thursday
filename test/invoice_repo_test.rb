@@ -4,6 +4,12 @@ require_relative "../lib/invoice_repo"
 require_relative '../lib/sales_engine'
 
 class InvoiceRepoTest < Minitest::Test
+    attr_reader :se
+
+  def setup
+    @se = SalesEngine.from_csv({:items=>"./test/support/items_test.csv", :merchants=>"./test/support/merchants_test.csv",
+        :invoices=>"./test/support/invoices_test.csv", :invoice_items=>"./test/support/invoice_items_test.csv"})
+  end
 
   def test_returns_all
     invoice_repo = InvoiceRepo.new("./test/support/invoices_test.csv", nil)
@@ -54,7 +60,6 @@ class InvoiceRepoTest < Minitest::Test
   end
 
   def test_something
-    se = SalesEngine.from_csv({:items => "./test/support/items_test.csv", :merchants => "./test/support/merchants_test.csv", :invoices => "./test/support/invoices_test.csv"})
     invoice = se.invoices.find_by_id(1)
     assert_equal nil, invoice.merchant
   end
