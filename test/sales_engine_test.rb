@@ -9,7 +9,8 @@ class SalesEngineTest < Minitest::Test
               :merchants=>"./test/support/merchants_test.csv",
               :invoices=>"./test/support/invoices_test.csv",
               :invoice_items=>"./test/support/invoice_items_test.csv",
-              :transactions=>"./test/support/transactions_test.csv"}
+              :transactions=>"./test/support/transactions_test.csv",
+              :customers=>"./test/support/customers_test.csv"}
   end
 
   def test_sales_engine_has_access_to_item_repo_class

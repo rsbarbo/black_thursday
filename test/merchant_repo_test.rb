@@ -57,7 +57,8 @@ class MerchantRepoTest < Minitest::Test
                                 :merchants=>"./data/merchants.csv",
                                 :invoices=>"./data/invoices.csv",
                                 :invoice_items=>"./data/invoice_items.csv",
-                                :transactions=>"./data/transactions.csv"})
+                                :transactions=>"./data/transactions.csv",
+                                :customers=>"./data/customers_test.csv"})
     merchant = se.merchants.find_by_id(12336622)
 
     assert_instance_of Item, merchant.items.first
@@ -69,7 +70,8 @@ class MerchantRepoTest < Minitest::Test
                                 :merchants=>"./data/merchants.csv",
                                 :invoices=>"./data/invoices.csv",
                                 :invoice_items=>"./data/invoice_items.csv",
-                                :transactions=>"./data/transactions.csv"})
+                                :transactions=>"./data/transactions.csv",
+                                :customers=>"./data/customers.csv"})
     merchant = se.merchants.find_by_id(12336622)
 
     assert_instance_of Invoice, merchant.invoices.first
