@@ -4,13 +4,13 @@ require_relative "../lib/invoice_repo"
 require_relative "../lib/invoice_item_repo"
 
 class SalesEngine
-  attr_reader :items, :merchants, :invoices, :invoice_item
+  attr_reader :items, :merchants, :invoices, :invoice_items
 
   def initialize(input)
     @items = ItemRepo.new(input[:items], self)
     @merchants = MerchantRepo.new(input[:merchants], self)
     @invoices = InvoiceRepo.new(input[:invoices], self)
-    @invoice_item = InvoiceItemRepo.new(input[:invoice_item], self)
+    @invoice_items = InvoiceItemRepo.new(input[:invoice_items], self)
   end
 
   def self.from_csv(input)

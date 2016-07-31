@@ -5,7 +5,8 @@ class SalesEngineTest < Minitest::Test
   attr_reader :input
 
   def setup
-    @input = {:items=>"./test/support/items_test.csv", :merchants=>"./test/support/merchants_test.csv", :invoices=>"./test/support/invoices_test.csv"}
+    @input = {:items=>"./test/support/items_test.csv", :merchants=>"./test/support/merchants_test.csv",
+              :invoices=>"./test/support/invoices_test.csv", :invoice_items=>"./test/support/invoice_items_test.csv"}
   end
 
   def test_sales_engine_has_access_to_item_repo_class
@@ -18,6 +19,10 @@ class SalesEngineTest < Minitest::Test
 
   def test_sales_engine_has_access_to_invoice_repo_class
     assert_equal(InvoiceRepo, SalesEngine.new(input).invoices.class)
+  end
+
+  def test_sales_engine_has_access_to_invoice_items_repo_class
+    assert_equal(InvoiceItemRepo, SalesEngine.new(input).invoice_items.class)
   end
 
 
