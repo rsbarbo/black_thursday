@@ -22,7 +22,6 @@ class TransactionRepo
   end
 
   def find_by_id(transaction_id)
-    # NOT WORKING
     all_transactions.find do |transaction|
       transaction.id == transaction_id
     end

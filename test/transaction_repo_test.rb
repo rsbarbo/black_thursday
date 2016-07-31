@@ -18,19 +18,18 @@ class TransactionRepoTest < Minitest::Test
   end
 
   def test_it_returns_all_transactions_by_transaction_id
-    assert_equal "2179", @se.transactions.find_by_id(1).invoice_id
-    assert_equal "4068631943231473", @se.transactions.find_by_id(1).credit_card_number
+    assert_equal 2179, @se.transactions.find_by_id(1).invoice_id
+    assert_equal 4068631943231473, @se.transactions.find_by_id(1).credit_card_number
     assert_equal "0217", @se.transactions.find_by_id(1).credit_card_expiration_date
     assert_equal "success", @se.transactions.find_by_id(1).result
   end
 
-  def test_it_can_return_all_transactions_bu_invoice_id
-    # empty due to test data being truncated
-    assert_equal [], @se.transactions.find_all_by_invoice_id(2179)
+  def test_it_can_return_all_transactions_by_invoice_id
+    assert_equal 1, @se.transactions.find_all_by_invoice_id(2179).length
   end
 
   def test_it_returns_all_transactions_by_cc_number
-    assert_equal 0, @se.transactions.find_all_by_credit_card_number(4068631943231473).length
+    assert_equal 1, @se.transactions.find_all_by_credit_card_number(4068631943231473).length
   end
 
   def test_it_returns_all_transactions_by_result
