@@ -8,8 +8,11 @@ class ItemRepoTest < Minitest::Test
   attr_reader :se
 
   def setup
-    @se = SalesEngine.from_csv({:items=>"./test/support/items_test.csv", :merchants=>"./test/support/merchants_test.csv",
-      :invoices=>"./test/support/invoices_test.csv", :invoice_items=>"./test/support/invoice_items_test.csv"})
+    @se = SalesEngine.from_csv({:items=>"./test/support/items_test.csv",
+                                :merchants=>"./test/support/merchants_test.csv",
+                                :invoices=>"./test/support/invoices_test.csv",
+                                :invoice_items=>"./test/support/invoice_items_test.csv",
+                                :transactions=>"./test/support/transactions_test.csv"})
   end
 
     def test_returns_all_items
