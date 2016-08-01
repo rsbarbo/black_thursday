@@ -39,4 +39,6 @@ class TransactionRepoTest < Minitest::Test
     transaction = se.transactions.find_by_id(2)
     assert_equal 46, transaction.invoice.id
   end
+
+  
 end

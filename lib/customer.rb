@@ -14,6 +14,7 @@ class Customer
   end
 
   def merchants
+    require 'pry'; binding.pry
     customer_repo.find_all_merchants_by_merchant_id(merchant_id)
   end
 

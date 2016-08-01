@@ -15,7 +15,7 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_it_can_return_average_items_per_merchant
-    assert_equal 1.33, sa.average_items_per_merchant
+    assert_equal 2.67, sa.average_items_per_merchant
   end
 
   def test_items_collection_of_items_counts
@@ -27,7 +27,7 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_it_can_return_average_items_per_merchant_standard_deviation
-    assert_equal 0.58, sa.average_items_per_merchant_standard_deviation
+    assert_equal 1.74, sa.average_items_per_merchant_standard_deviation
   end
 
   def test_deviation_calculator
@@ -35,7 +35,7 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_it_can_return_merchants_with_most_items_to_sell
-    assert_equal 1, sa.merchants_with_high_item_count.count
+    assert_equal 0, sa.merchants_with_high_item_count.count
   end
 
   def test_it_returns_the_average_price_of_merchants_items

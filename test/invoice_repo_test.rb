@@ -75,7 +75,7 @@ class InvoiceRepoTest < Minitest::Test
   def test_it_can_get_transaction_from_invoice_id
     se = Supporter.new.se
     invoice = se.invoices.find_by_id(7)
-    assert_equal 3, invoice.transactions.length
+    assert_equal 0, invoice.transactions.length
   end
 
   def test_it_can_find_a_customer

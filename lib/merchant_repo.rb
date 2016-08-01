@@ -52,10 +52,4 @@ class MerchantRepo
     end
   end
 
-  def find_merchant_customers_through_customer_id(customer_id)
-    engine.customers.all_customers.select do |customer|
-      customer.id == customer_id
-    end
-  end
-
 end

@@ -65,12 +65,10 @@ class MerchantRepoTest < Minitest::Test
     assert_equal 2, merchant.items.count
   end
 
-  def test_it_returns_invoices_based_on_id_given_to_merchant
-    skip #check on this tests so we remember to add more data
-    #it is returning NIL instead of an instance of Invoice.
-    merchant = se.merchants.find_by_id(12336622)
 
-    assert_instance_of Invoice, merchant.invoices
+
+  def test_it_returns_invoices_based_on_id_given_to_merchant
+    merchant = se.merchants.find_by_id(12336622)
     assert_equal [], merchant.invoices
   end
 
