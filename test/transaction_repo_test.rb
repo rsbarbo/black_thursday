@@ -34,4 +34,8 @@ class TransactionRepoTest < Minitest::Test
     assert_equal 161, @se.transactions.find_all_by_result("success").length
     assert_equal 38, @se.transactions.find_all_by_result("failed").length
   end
+
+  def test
+
+  end
 end

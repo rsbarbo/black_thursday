@@ -47,7 +47,6 @@ class ItemRepo
     end
   end
 
-
   def find_all_by_price_in_range(range)
     all_items.find_all do |item|
       item if item.unit_price.between?(range.first, range.last)

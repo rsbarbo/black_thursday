@@ -1,3 +1,5 @@
+require_relative "../lib/sales_engine"
+
 class Supporter
 
 def se

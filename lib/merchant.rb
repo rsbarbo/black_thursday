@@ -20,4 +20,7 @@ class Merchant
     merchant_repo.find_merchant_invoices_through_item_id(id)
   end
 
+  def customers
+    merchant_repo.find_merchant_customers_through_customer_id(customer_id)
+  end
 end
