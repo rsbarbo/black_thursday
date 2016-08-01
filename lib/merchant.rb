@@ -19,5 +19,9 @@ class Merchant
   def invoices
     merchant_repo.find_merchant_invoices_through_item_id(id)
   end
-  
+
+  def customers
+    merchant_repo.find_all_customers_by_merchant_id(id)
+  end
+
 end

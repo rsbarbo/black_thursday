@@ -2,8 +2,15 @@ require "csv"
 require "./test_helper"
 require_relative "../lib/customer_repo"
 require_relative '../lib/sales_engine'
+require_relative '../test/test_supporter'
+
 
 class CustomerRepoTest < Minitest::Test
+  attr_reader :se
+
+  def setup
+    @se = Supporter.new.se
+  end
 
   def test_returns_all
     customer_repo = CustomerRepo.new("./test/support/customers_test.csv", nil)
@@ -24,6 +31,16 @@ class CustomerRepoTest < Minitest::Test
   def test_it_returns_all_customers_by_last_name
     customer_repo = CustomerRepo.new("./test/support/customers_test.csv", nil)
     assert_equal 1, customer_repo.find_all_by_last_name("Ond").length
+  end
+
+  def test_it_returns_all_merchants_by_customer_id
+    customer = se.customers.find_by_id(7)
+    assert_equal [], customer.merchants
+  end
+
+  def test_it_returns_all_merchants_by_customer_id
+    customer = se.customers.find_by_id(7)
+    assert_equal 1, customer.merchants.length
   end
 
 end

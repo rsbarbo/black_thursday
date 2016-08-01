@@ -65,11 +65,14 @@ class MerchantRepoTest < Minitest::Test
     assert_equal 2, merchant.items.count
   end
 
-
-
   def test_it_returns_invoices_based_on_id_given_to_merchant
     merchant = se.merchants.find_by_id(12336622)
     assert_equal [], merchant.invoices
+  end
+
+  def test_it_returns_customers_based_on_id_given_to_merchant
+    merchant = se.merchants.find_by_id(12336622)
+    assert_equal 0, merchant.customers.length
   end
 
 end
