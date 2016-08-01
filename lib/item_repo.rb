@@ -2,12 +2,13 @@ require_relative "../lib/item"
 require "csv"
 
 class ItemRepo
-  attr_reader :engine
-  attr_accessor :all_items, :find_all_by_merchant_id
+  attr_reader   :engine
+  attr_accessor :all_items,
+                :find_all_by_merchant_id
 
   def initialize(file_path, sales_engine)
     @all_items = []
-    @engine = sales_engine
+    @engine    = sales_engine
     @load_csvs = load_csvs(file_path)
   end
 

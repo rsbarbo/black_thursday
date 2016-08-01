@@ -2,13 +2,13 @@ require_relative "../lib/invoice_item"
 require "csv"
 
 class InvoiceItemRepo
-  attr_reader :engine
+  attr_reader   :engine
   attr_accessor :all_invoice_items
 
   def initialize(file_path, sales_engine)
     @all_invoice_items = []
-    @engine = sales_engine
-    @load_csvs = load_csvs(file_path)
+    @engine            = sales_engine
+    @load_csvs         = load_csvs(file_path)
   end
 
   def load_csvs(file_path)

@@ -7,8 +7,8 @@ class InvoiceRepo
 
   def initialize(file_path, sales_engine)
     @all_invoices = []
-    @engine = sales_engine
-    @load_csvs = load_csvs(file_path)
+    @engine       = sales_engine
+    @load_csvs    = load_csvs(file_path)
   end
 
   def load_csvs(file_path)

@@ -2,11 +2,13 @@ require 'csv'
 require 'bigdecimal'
 
 class Merchant
-  attr_reader :id, :name, :merchant_repo
+  attr_reader :id,
+              :name,
+              :merchant_repo
 
   def initialize(row, merchant_repo)
-    @id = row[:id].to_i
-    @name = row[:name]
+    @id            = row[:id].to_i
+    @name          = row[:name]
     @merchant_repo = merchant_repo
   end
 
