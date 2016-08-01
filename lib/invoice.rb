@@ -23,4 +23,17 @@ class Invoice
   def merchant
     invoice_repo.find_invoices_by_merchant_id(merchant_id)
   end
+
+  def items
+    invoice_repo.find_items_by_invoice_id(id)
+  end
+
+  def transactions
+    invoice_repo.find_invoices_by_transaction_id(id)
+  end
+
+  def customer
+    invoice_repo.engine.customers.find_by_id(customer_id)
+  end
+
 end

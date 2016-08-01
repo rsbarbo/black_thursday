@@ -40,5 +40,11 @@ class CustomerRepo
     end
   end
 
+  def find_all_merchants_by_customer_id(id)
+    merchants = engine.invoices.find_all_by_customer_id(id).map do |invoice|
+      invoice.merchant
+    end
+    merchants.uniq
+  end
 
 end

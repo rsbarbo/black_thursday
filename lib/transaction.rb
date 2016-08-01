@@ -5,7 +5,8 @@ class Transaction
               :credit_card_expiration_date,
               :result,
               :created_at,
-              :updated_at
+              :updated_at,
+              :transaction_repo
 
   def initialize(row, transaction_repo)
     @id = row[:id].to_i
@@ -15,5 +16,10 @@ class Transaction
     @result = row[:result]
     @created_at = Time.parse(row[:created_at].to_s)
     @updated_at = Time.parse(row[:updated_at].to_s)
+    @transaction_repo = transaction_repo
+  end
+
+  def invoice
+    transaction_repo.find_invoices_by_transaction_id(id)
   end
 end

@@ -34,4 +34,11 @@ class TransactionRepoTest < Minitest::Test
     assert_equal 161, @se.transactions.find_all_by_result("success").length
     assert_equal 38, @se.transactions.find_all_by_result("failed").length
   end
+
+  def test_it_returns_invoices_by_transaction_id
+    transaction = se.transactions.find_by_id(2)
+    assert_equal 46, transaction.invoice.id
+  end
+
+  
 end

@@ -1,5 +1,6 @@
 require "./test_helper"
 require_relative "../lib/invoice"
+require_relative "../test/test_supporter"
 
 class InvoiceTest < Minitest::Test
   attr_reader :invoice

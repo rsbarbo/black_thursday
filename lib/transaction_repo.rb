@@ -2,7 +2,8 @@ require_relative "../lib/transaction"
 require "csv"
 
 class TransactionRepo
-  attr_reader :all_transactions
+  attr_reader :all_transactions,
+              :engine
 
   def initialize(file_path, sales_engine)
     @all_transactions = []
@@ -42,6 +43,18 @@ class TransactionRepo
   def find_all_by_result(result_term)
     all_transactions.find_all do |transaction|
       transaction.result == result_term
+    end
+  end
+
+  def find_invoices_by_transaction_id(trans_id)
+        engine.transactions.all_transactions.map do |transaction|
+      return rtr_inst_invc(transaction.invoice_id) if trans_id == transaction.id
+    end
+  end
+
+  def rtr_inst_invc(invoice_id)
+      engine.invoices.all_invoices.map do |invoice|
+    return invoice if invoice_id == invoice.id
     end
   end
 

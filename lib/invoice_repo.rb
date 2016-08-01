@@ -52,4 +52,28 @@ class InvoiceRepo
     end.first
   end
 
+  def find_items_by_invoice_id(inv_id)
+    find_by_inv_id = engine.invoice_items.find_all_by_invoice_id(inv_id)
+    itm_ids = find_by_inv_id.map do |inv_item|
+      inv_item.item_id if inv_item.invoice_id == inv_id
+    end
+    collect_items_based_on_itm_ids(itm_ids)
+  end
+
+  def collect_items_based_on_itm_ids(itm_ids)
+    coll_of_item_instans = []
+    itm_ids.map do |id|
+      coll_of_item_instans << engine.items.find_by_id(id)
+    end
+    coll_of_item_instans
+  end
+
+  def find_invoices_by_transaction_id(invoice_id)
+    coll_of_trans_instances = []
+    engine.transactions.all_transactions.select do |transct|
+       coll_of_trans_instances << transct if transct.invoice_id == invoice_id
+    end
+    coll_of_trans_instances
+  end
+
 end
