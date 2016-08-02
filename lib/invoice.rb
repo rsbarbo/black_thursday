@@ -1,5 +1,7 @@
 require 'csv'
 require 'time'
+require "pry"
+
 
 class Invoice
   attr_reader :id,
@@ -34,6 +36,15 @@ class Invoice
 
   def customer
     invoice_repo.engine.customers.find_by_id(customer_id)
+  end
+
+  def is_paid_in_full?
+    binding.pry
+    invoice_repo.invoices_paid_in_full?(id)
+  end
+
+  def total
+
   end
 
 end

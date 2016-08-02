@@ -60,29 +60,30 @@ class InvoiceRepoTest < Minitest::Test
   end
 
   def test_it_can_get_all_items_on_a_particular_invoice
-    se = Supporter.new.se
     invoice = se.invoices.find_by_id(7)
     assert_equal 4, invoice.items.length
   end
 
   def test_it_can_get_all_items_on_a_particular_invoice_by_item_id
-    se = Supporter.new.se
     invoice = se.invoices.find_by_id(7)
     itms_id = [263446647, 263426763, 263445611, 263556622]
     assert_equal 4, invoice.invoice_repo.collect_items_based_on_itm_ids(itms_id).length
   end
 
   def test_it_can_get_transaction_from_invoice_id
-    se = Supporter.new.se
     invoice = se.invoices.find_by_id(7)
     assert_equal 0, invoice.transactions.length
   end
 
   def test_it_can_find_a_customer
-    se = Supporter.new.se
     invoice = se.invoices.find_by_id(7)
     assert_equal "Joey", invoice.customer.first_name
     assert_equal "Ondricka", invoice.customer.last_name
+  end
+
+  def test_invoice_is_paid_in_full
+    invoice = se.invoices.find_by_id(7)
+    assert_equal false, invoice.is_paid_in_full?
   end
 
 end

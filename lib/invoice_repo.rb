@@ -76,4 +76,18 @@ class InvoiceRepo
     coll_of_trans_instances
   end
 
+  def invoices_paid_in_full?(id)
+    transactions = engine.transactions.all_transactions
+    trans_result = transactions.find_all do |transaction|
+      transaction.invoice_id == id
+    end
+    checking_invoices(trans_result)
+  end
+
+  def checking_invoices(trans_result)
+    trans_result.any? do |transaction|
+      transaction.result == "success"
+    end
+  end
+
 end
