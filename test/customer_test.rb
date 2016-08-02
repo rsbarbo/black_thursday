@@ -7,12 +7,12 @@ class CustomerTest < Minitest::Test
 
   def setup
     @customer = Customer.new({
-  :id => 6,
-  :first_name => "Joan",
-  :last_name => "Clarke",
-  :created_at => Time.now,
-  :updated_at => Time.now
-  }, nil)
+      :id => 6,
+      :first_name => "Joan",
+      :last_name => "Clarke",
+      :created_at => Time.now,
+      :updated_at => Time.now
+      }, nil)
   end
 
   def test_it_returns_id
