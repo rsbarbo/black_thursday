@@ -1,7 +1,5 @@
 require 'csv'
 require 'time'
-require "pry"
-
 
 class Invoice
   attr_reader :id,
@@ -39,7 +37,6 @@ class Invoice
   end
 
   def is_paid_in_full?
-    binding.pry
     invoice_repo.invoices_paid_in_full?(id)
   end
 
