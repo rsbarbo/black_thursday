@@ -41,7 +41,7 @@ class Invoice
   end
 
   def total
-
+    invoice_repo.checking_total(id) if is_paid_in_full?
   end
 
 end

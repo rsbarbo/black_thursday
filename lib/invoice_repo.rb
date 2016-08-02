@@ -1,5 +1,6 @@
 require_relative "../lib/invoice"
 require "csv"
+require "pry"
 
 class InvoiceRepo
   attr_reader :engine
@@ -88,6 +89,12 @@ class InvoiceRepo
     trans_result.any? do |transaction|
       transaction.result == "success"
     end
+  end
+
+  def checking_total(id)
+    find_all_invs = engine.invoice_items.find_all_by_invoice_id(id)
+    totals = find_all_invs.map {|item| item.quantity * item.unit_price}
+    totals.reduce(&:+)
   end
 
 end

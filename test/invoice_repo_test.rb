@@ -1,4 +1,5 @@
 require "csv"
+require "bigdecimal"
 require "./test_helper"
 require_relative '../test/test_supporter'
 require_relative "../lib/invoice_repo"
@@ -81,9 +82,20 @@ class InvoiceRepoTest < Minitest::Test
     assert_equal "Ondricka", invoice.customer.last_name
   end
 
-  def test_invoice_is_paid_in_full
+  def test_invoice_is_paid_in_full_returns_false
     invoice = se.invoices.find_by_id(7)
     assert_equal false, invoice.is_paid_in_full?
+  end
+
+
+  def test_invoice_is_paid_in_full_returns_true
+    invoice = se.invoices.find_by_id(14)
+    assert_equal true, invoice.is_paid_in_full?
+  end
+
+  def test_it_returns_total
+    invoice = se.invoices.find_by_id(14)
+    assert_equal 22496.84, invoice.total
   end
 
 end
