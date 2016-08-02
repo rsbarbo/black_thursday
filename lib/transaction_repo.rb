@@ -1,5 +1,5 @@
-require_relative "../lib/transaction"
 require "csv"
+require_relative "../lib/transaction"
 
 class TransactionRepo
   attr_reader :all_transactions,

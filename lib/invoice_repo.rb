@@ -1,5 +1,5 @@
-require_relative "../lib/invoice"
 require "csv"
+require_relative "../lib/invoice"
 
 class InvoiceRepo
   attr_reader :engine
@@ -71,7 +71,7 @@ class InvoiceRepo
   def find_invoices_by_transaction_id(invoice_id)
     coll_of_trans_instances = []
     engine.transactions.all_transactions.select do |transct|
-       coll_of_trans_instances << transct if transct.invoice_id == invoice_id
+      coll_of_trans_instances << transct if transct.invoice_id == invoice_id
     end
     coll_of_trans_instances
   end
