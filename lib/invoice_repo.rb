@@ -1,5 +1,6 @@
 require "csv"
 require_relative "../lib/invoice"
+require "pry"
 
 class InvoiceRepo
   attr_reader :engine
@@ -94,6 +95,12 @@ class InvoiceRepo
     find_all_invs = engine.invoice_items.find_all_by_invoice_id(id)
     totals = find_all_invs.map {|item| item.quantity * item.unit_price}
     totals.reduce(&:+)
+  end
+
+  def find_all_by_date(date)
+    outcome = all_invoices.find_all do |invoice|
+      invoice.created_at == Time.parse(date)
+    end
   end
 
 end
