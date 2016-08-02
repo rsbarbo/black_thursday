@@ -160,11 +160,6 @@ class SalesAnalyst
     (result * 100).round(2)
   end
 
-  # iis = ids.map{ |id| invoice_items.find_all_by_invoice_id(id) }.flatten
-  # iis.map do |ii|
-  #   ii.quantity * ii.unit_price
-  # end.reduce(:+)
-
   def total_revenue_by_date(date)
     invoices = se.invoices.find_all_by_date(date)
     inv_ids = invoices.map {|invoice| invoice.id}
