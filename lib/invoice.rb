@@ -36,4 +36,12 @@ class Invoice
     invoice_repo.engine.customers.find_by_id(customer_id)
   end
 
+  def is_paid_in_full?
+    invoice_repo.invoices_paid_in_full?(id)
+  end
+
+  def total
+    invoice_repo.checking_total(id) if is_paid_in_full?
+  end
+
 end

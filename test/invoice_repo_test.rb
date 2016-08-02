@@ -1,4 +1,5 @@
 require "csv"
+require "bigdecimal"
 require "./test_helper"
 require_relative '../test/test_supporter'
 require_relative "../lib/invoice_repo"
@@ -60,29 +61,41 @@ class InvoiceRepoTest < Minitest::Test
   end
 
   def test_it_can_get_all_items_on_a_particular_invoice
-    se = Supporter.new.se
     invoice = se.invoices.find_by_id(7)
     assert_equal 4, invoice.items.length
   end
 
   def test_it_can_get_all_items_on_a_particular_invoice_by_item_id
-    se = Supporter.new.se
     invoice = se.invoices.find_by_id(7)
     itms_id = [263446647, 263426763, 263445611, 263556622]
     assert_equal 4, invoice.invoice_repo.collect_items_based_on_itm_ids(itms_id).length
   end
 
   def test_it_can_get_transaction_from_invoice_id
-    se = Supporter.new.se
     invoice = se.invoices.find_by_id(7)
     assert_equal 0, invoice.transactions.length
   end
 
   def test_it_can_find_a_customer
-    se = Supporter.new.se
     invoice = se.invoices.find_by_id(7)
     assert_equal "Joey", invoice.customer.first_name
     assert_equal "Ondricka", invoice.customer.last_name
+  end
+
+  def test_invoice_is_paid_in_full_returns_false
+    invoice = se.invoices.find_by_id(7)
+    assert_equal false, invoice.is_paid_in_full?
+  end
+
+
+  def test_invoice_is_paid_in_full_returns_true
+    invoice = se.invoices.find_by_id(14)
+    assert_equal true, invoice.is_paid_in_full?
+  end
+
+  def test_it_returns_total
+    invoice = se.invoices.find_by_id(14)
+    assert_equal 22496.84, invoice.total
   end
 
 end
