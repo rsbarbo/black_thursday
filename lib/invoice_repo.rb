@@ -99,7 +99,7 @@ class InvoiceRepo
 
   def find_all_by_date(date)
     outcome = all_invoices.find_all do |invoice|
-      invoice.created_at == Time.parse(date)
+      invoice.created_at == date
     end
   end
 
