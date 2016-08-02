@@ -1,5 +1,5 @@
-require_relative "../lib/customer"
 require "csv"
+require_relative "../lib/customer"
 
 class CustomerRepo
   attr_reader   :engine

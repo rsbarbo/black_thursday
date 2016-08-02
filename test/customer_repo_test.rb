@@ -4,7 +4,6 @@ require_relative "../lib/customer_repo"
 require_relative '../lib/sales_engine'
 require_relative '../test/test_supporter'
 
-
 class CustomerRepoTest < Minitest::Test
   attr_reader :se
 

@@ -1,9 +1,9 @@
 require_relative "../lib/item_repo"
-require_relative "../lib/merchant_repo"
 require_relative "../lib/invoice_repo"
-require_relative "../lib/invoice_item_repo"
-require_relative "../lib/transaction_repo"
+require_relative "../lib/merchant_repo"
 require_relative "../lib/customer_repo"
+require_relative "../lib/transaction_repo"
+require_relative "../lib/invoice_item_repo"
 
 class SalesEngine
   attr_reader :items,

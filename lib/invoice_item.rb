@@ -2,7 +2,6 @@ require 'csv'
 require 'time'
 
 class InvoiceItem
-
   attr_reader :id,
               :item_id,
               :invoice_id,
@@ -21,7 +20,6 @@ class InvoiceItem
     @created_at        = Time.parse(row[:created_at].to_s)
     @updated_at        = Time.parse(row[:updated_at].to_s)
     @invoice_item_repo = invoice_item_repo
-
   end
 
   def unit_price_to_dollars

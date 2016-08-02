@@ -1,6 +1,6 @@
-require 'bigdecimal'
 require 'csv'
 require 'time'
+require 'bigdecimal'
 
 class Item
   attr_reader :id,

@@ -1,5 +1,5 @@
-require_relative "../lib/invoice_item"
 require "csv"
+require_relative "../lib/invoice_item"
 
 class InvoiceItemRepo
   attr_reader   :engine
@@ -39,6 +39,5 @@ class InvoiceItemRepo
       invoice_item.invoice_id == invoice_id
     end
   end
-
 
 end

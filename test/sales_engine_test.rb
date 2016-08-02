@@ -1,17 +1,14 @@
 require_relative '../test_helper'
 require_relative '../lib/sales_engine'
+require_relative '../test/test_supporter'
+
 
 class SalesEngineTest < Minitest::Test
-  attr_reader :input
+    attr_reader :input
 
-  def setup
-    @input = {:items=>"./test/support/items_test.csv",
-              :merchants=>"./test/support/merchants_test.csv",
-              :invoices=>"./test/support/invoices_test.csv",
-              :invoice_items=>"./test/support/invoice_items_test.csv",
-              :transactions=>"./test/support/transactions_test.csv",
-              :customers=>"./test/support/customers_test.csv"}
-  end
+    def setup
+      @input = Supporter.new.input
+    end
 
   def test_sales_engine_has_access_to_item_repo_class
     assert_equal(ItemRepo, SalesEngine.new(input).items.class)
