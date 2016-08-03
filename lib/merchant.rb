@@ -25,7 +25,7 @@ class Merchant
   end
 
   def revenue
-    invoices.reduce(0) do |sum, invoice|
+      invoices.reduce(0) do |sum, invoice|
       sum += invoice.total if invoice.total != nil
       sum
     end
@@ -41,4 +41,8 @@ class Merchant
     end
   end
 
+  def total_revenue
+
+
+  end
 end
