@@ -97,11 +97,8 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_it_returns_merchants_with_only_one_item
-    assert_equal "", merchants_with_only_one_item
-  end
-
-  def test_it_returns_revenue_by_merchant
-    assert_equal 0, sa.revenue_by_merchant(12334871)
+    assert_equal 2, sa.merchants_with_only_one_item.length
+    assert_instance_of Merchant, sa.merchants_with_only_one_item.first
   end
 
 end

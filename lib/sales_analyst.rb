@@ -112,7 +112,9 @@ class SalesAnalyst
   #merchants_with_only_one_item
 
   def merchants_with_only_one_item
-
+      all_merchant.find_all do |merchant|
+      merchant.items.count == 1
+    end
   end
 
   def revenue_by_merchant(merch_id)
