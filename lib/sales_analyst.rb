@@ -108,12 +108,15 @@ class SalesAnalyst
     all_merchant.find_all { |merchant| merchant.are_invoices_pending?}
   end
 
-  #missing two methods here (Susi is working on them)
-  #merchants_with_only_one_item
-
   def merchants_with_only_one_item
-      all_merchant.find_all do |merchant|
+    all_merchant.find_all do |merchant|
       merchant.items.count == 1
+    end
+  end
+
+  def merchants_with_only_one_item_registered_in_month(month)
+    merchants_with_only_one_item.find_all do |merchant|
+      merchant.created_at.strftime("%B").downcase == month
     end
   end
 
@@ -123,6 +126,5 @@ class SalesAnalyst
       merch.revenue
     end.max
   end
-
 
 end

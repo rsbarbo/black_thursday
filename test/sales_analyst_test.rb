@@ -101,4 +101,12 @@ class SalesAnalystTest < Minitest::Test
     assert_instance_of Merchant, sa.merchants_with_only_one_item.first
   end
 
+  def test_it_returns_merchants_with_only_one_item_registered_in_month
+    assert_equal [], sa.merchants_with_only_one_item_registered_in_month("july")
+  end
+
+  def test_returns_revenue_by_merchant
+    assert_equal 0, sa.revenue_by_merchant(12336050)
+  end
+
 end
