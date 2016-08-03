@@ -3,8 +3,8 @@ require 'bigdecimal'
 
 class Merchant
   attr_reader :id,
-              :name,
-              :merchant_repo
+  :name,
+  :merchant_repo
 
   def initialize(row, merchant_repo)
     @id            = row[:id].to_i
@@ -25,7 +25,20 @@ class Merchant
   end
 
   def revenue
-    merchant_repo.seeking_revenue
+    invoices.reduce(0) do |sum, invoice|
+      sum += invoice.total if invoice.total != nil
+      sum
+    end
+  end
+
+  def transactions
+    invoice_repo.transactions_from_transaction_repo(id)
+  end
+
+  def are_invoices_pending?
+    invoices.any? do |invoice|
+      invoice.is_pending?
+    end
   end
 
 end

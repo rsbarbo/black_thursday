@@ -59,10 +59,4 @@ class MerchantRepo
     customers.uniq
   end
 
-  def seeking_revenue
-    engine.invoices.all_invoices.inject(BigDecimal.new(0)) do |sum, invoice|
-      sum =+ invoice.total if invoice.total != nil && invoice.is_paid_in_full?
-    end
-  end
-
 end
