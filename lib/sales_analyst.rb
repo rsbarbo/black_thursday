@@ -176,4 +176,20 @@ class SalesAnalyst
     result.reduce(:+)
   end
 
+  def ranking_merchants_by_revenue
+      all_merchant.sort_by do |merchant|
+      merchant.revenue
+    end
+  end
+
+  # def removing_nils(ranking)
+  #   ranking.delete_if do |merchant|
+  #     merchant.revenue == 0.0
+  #   end
+  # end
+
+  def top_revenue_earners(number = 20)
+    ranking_merchants_by_revenue[0..number - 1]
+  end
+
 end

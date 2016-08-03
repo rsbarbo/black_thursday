@@ -24,4 +24,8 @@ class Merchant
     merchant_repo.find_all_customers_by_merchant_id(id)
   end
 
+  def revenue
+    merchant_repo.seeking_revenue
+  end
+
 end
