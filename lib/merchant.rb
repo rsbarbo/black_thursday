@@ -41,8 +41,4 @@ class Merchant
     end
   end
 
-  def total_revenue
-
-
-  end
 end

@@ -96,9 +96,9 @@ class SalesAnalystTest < Minitest::Test
     assert_equal [], sa.merchants_with_pending_invoices
   end
 
-  #missing two methods here (Susi is working on them)
-  #merchants_with_only_one_item_registered_in_month
-  #merchants_with_only_one_item
+  def test_it_returns_merchants_with_only_one_item
+    assert_equal "", merchants_with_only_one_item
+  end
 
   def test_it_returns_revenue_by_merchant
     assert_equal 0, sa.revenue_by_merchant(12334871)

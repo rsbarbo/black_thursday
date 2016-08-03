@@ -109,8 +109,11 @@ class SalesAnalyst
   end
 
   #missing two methods here (Susi is working on them)
-  #merchants_with_only_one_item_registered_in_month
   #merchants_with_only_one_item
+
+  def merchants_with_only_one_item
+
+  end
 
   def revenue_by_merchant(merch_id)
     merchant = all_merchant.map {|mer| mer.merchant_repo.find_by_id(merch_id)}
