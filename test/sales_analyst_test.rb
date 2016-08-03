@@ -93,7 +93,20 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_it_returns_merchant_pending_invoices
-    assert_equal  [], sa.merchants_with_pending_invoices
+    assert_equal [], sa.merchants_with_pending_invoices
+  end
+
+  def test_it_returns_merchants_with_only_one_item
+    assert_equal 2, sa.merchants_with_only_one_item.length
+    assert_instance_of Merchant, sa.merchants_with_only_one_item.first
+  end
+
+  def test_it_returns_merchants_with_only_one_item_registered_in_month
+    assert_equal [], sa.merchants_with_only_one_item_registered_in_month("July")
+  end
+
+  def test_returns_revenue_by_merchant
+    assert_equal 0, sa.revenue_by_merchant(12336050)
   end
 
 end

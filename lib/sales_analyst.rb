@@ -95,8 +95,8 @@ class SalesAnalyst
   end
 
   def merchants_ranked_by_revenue
-        all_merchant.sort_by do |merchant|
-        merchant.revenue
+    all_merchant.sort_by do |merchant|
+      merchant.revenue
     end.reverse
   end
 
@@ -106,6 +106,25 @@ class SalesAnalyst
 
   def merchants_with_pending_invoices
     all_merchant.find_all { |merchant| merchant.are_invoices_pending?}
+  end
+
+  def merchants_with_only_one_item
+    all_merchant.find_all do |merchant|
+      merchant.items.count == 1
+    end
+  end
+
+  def merchants_with_only_one_item_registered_in_month(month)
+    merchants_with_only_one_item.find_all do |merchant|
+    merchants_with_only_one_item if merchant.created_at.strftime("%B") == month
+    end
+  end
+
+  def revenue_by_merchant(merch_id)
+    merchant = all_merchant.map {|mer| mer.merchant_repo.find_by_id(merch_id)}
+    merchant.map do |merch|
+      merch.revenue
+    end.max
   end
 
 end

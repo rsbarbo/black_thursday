@@ -1,14 +1,18 @@
 require 'csv'
+require 'time'
 require 'bigdecimal'
 
 class Merchant
   attr_reader :id,
   :name,
-  :merchant_repo
+  :merchant_repo,
+  :created_at,
+  :updated_at
 
   def initialize(row, merchant_repo)
     @id            = row[:id].to_i
     @name          = row[:name]
+    @created_at    = Time.parse(row[:created_at])
     @merchant_repo = merchant_repo
   end
 
@@ -25,7 +29,7 @@ class Merchant
   end
 
   def revenue
-    invoices.reduce(0) do |sum, invoice|
+      invoices.reduce(0) do |sum, invoice|
       sum += invoice.total if invoice.total != nil
       sum
     end
@@ -40,5 +44,7 @@ class Merchant
       invoice.is_pending?
     end
   end
+
+
 
 end
