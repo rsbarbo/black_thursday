@@ -88,7 +88,7 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_it_returns_top_revenue_earners
-    assert_equal 3, sa.top_revenue_earners(3).length
+    assert_equal 3, sa.top_revenue_earners(10).length
   end
 
 end
