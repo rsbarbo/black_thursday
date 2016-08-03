@@ -2,49 +2,21 @@ require_relative "../lib/sales_engine"
 require "pry"
 
 class SalesAnalyst
+  include SalesAnalystAssistant
+
   attr_reader :se, :avg_inv_per_day
 
   def initialize(sales_engine)
     @se = sales_engine
   end
 
-  def all_merchant
-    se.merchants.all
-  end
-
-  def all_items
-    se.items.all
-  end
-
-  def all_invoices
-    se.invoices.all
-  end
-
   def average_items_per_merchant
     ((se.items.all.count)/(all_merchant.count.to_f)).round(2)
-  end
-
-  def collct_of_itms_cnts
-    collection  = all_merchant.map do |merchant|
-      merchant.items.count
-    end
-    collection
-  end
-
-  def items_qty
-    collct_of_itms_cnts.count
   end
 
   def average_items_per_merchant_standard_deviation
     avg_itm_p_mrchnt = average_items_per_merchant
     merchant_deviation_calculator(collct_of_itms_cnts, avg_itm_p_mrchnt)
-  end
-
-  def merchant_deviation_calculator(collct_of_itms_cnts, avg_itm_p_mrchnt)
-    pre_deviation = (collct_of_itms_cnts.reduce(0) do |accounter, average_num|
-      accounter + ((average_num - avg_itm_p_mrchnt) ** 2)
-    end)/(items_qty - 1).to_f
-    Math.sqrt(pre_deviation).round(2)
   end
 
   def merchants_with_high_item_count
@@ -67,15 +39,6 @@ class SalesAnalyst
     end
     outcome = sum_of_averages / all_merchant.count
     outcome.floor(2)
-  end
-
-  def average_item_price_standard_deviation
-    avg_avg_p_merchant = average_average_price_per_merchant
-    items = all_items.map(&:unit_price)
-    pre_deviation = (items.reduce(0) do |accounter, avg_num|
-      accounter + ((avg_num - avg_avg_p_merchant) ** 2)
-    end)/(items.count - 1).to_f
-    Math.sqrt(pre_deviation).round(2)
   end
 
   def golden_items
