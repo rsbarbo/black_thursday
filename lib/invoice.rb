@@ -44,4 +44,8 @@ class Invoice
     invoice_repo.checking_total(id) if is_paid_in_full?
   end
 
+  def is_pending?
+    invoice_repo.getting_transactions(id)
+  end
+
 end

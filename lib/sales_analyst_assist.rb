@@ -88,10 +88,4 @@ module SalesAnalystAssistant
     result.reduce(:+)
   end
 
-  def ranking_merchants_by_revenue
-        all_merchant.sort_by do |merchant|
-        merchant.revenue
-    end.reverse
-  end
-
 end

@@ -94,8 +94,18 @@ class SalesAnalyst
     finding_total_revenue_by_date(invoices, inv_ids)
   end
 
+  def merchants_ranked_by_revenue
+        all_merchant.sort_by do |merchant|
+        merchant.revenue
+    end.reverse
+  end
+
   def top_revenue_earners(number = 20)
-    ranking_merchants_by_revenue[0..number - 1]
+    merchants_ranked_by_revenue[0..number - 1]
+  end
+
+  def merchants_with_pending_invoices
+    all_merchant.find_all { |merchant| merchant.are_invoices_pending?}
   end
 
 end

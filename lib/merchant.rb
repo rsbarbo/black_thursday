@@ -31,4 +31,14 @@ class Merchant
     end
   end
 
+  def transactions
+    invoice_repo.transactions_from_transaction_repo(id)
+  end
+
+  def are_invoices_pending?
+    invoices.any? do |invoice|
+      invoice.is_pending?
+    end
+  end
+
 end

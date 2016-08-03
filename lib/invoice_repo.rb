@@ -103,4 +103,16 @@ class InvoiceRepo
     end
   end
 
+  def getting_transactions(id)
+    transactions = engine.transactions.all_transactions
+    transactions = transactions.find_all do |transaction|
+      transaction.invoice_id == id
+    end
+    looking_for_pending_transactions(transactions)
+  end
+
+  def looking_for_pending_transactions(transactions)
+    transactions.all? { |trans| trans.result == "failed"}
+  end
+
 end

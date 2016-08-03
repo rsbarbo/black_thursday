@@ -88,7 +88,12 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_it_returns_top_revenue_earners
-    assert_equal 3, sa.top_revenue_earners(10).length
+    assert_equal 12336050, sa.top_revenue_earners(10).first.id
+    assert_instance_of Merchant, sa.top_revenue_earners(10).first
+  end
+
+  def test_it_returns_merchant_pending_invoices
+    assert_equal  [], sa.merchants_with_pending_invoices
   end
 
 end
