@@ -102,7 +102,7 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_it_returns_merchants_with_only_one_item_registered_in_month
-    assert_equal [], sa.merchants_with_only_one_item_registered_in_month("july")
+    assert_equal [], sa.merchants_with_only_one_item_registered_in_month("July")
   end
 
   def test_returns_revenue_by_merchant
