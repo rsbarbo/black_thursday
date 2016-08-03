@@ -47,8 +47,8 @@ class TransactionRepo
   end
 
   def find_invoices_by_transaction_id(trans_id)
-        engine.transactions.all_transactions.map do |transaction|
-      return rtr_inst_invc(transaction.invoice_id) if trans_id == transaction.id
+        engine.transactions.all_transactions.map do |trans|
+      return rtr_inst_invc(trans.invoice_id) if trans_id == trans.id
     end
   end
 

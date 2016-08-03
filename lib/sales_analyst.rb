@@ -159,4 +159,7 @@ class SalesAnalyst
     (result * 100).round(2)
   end
 
+  def total_revenue_by_date(date)
+  end
+
 end
