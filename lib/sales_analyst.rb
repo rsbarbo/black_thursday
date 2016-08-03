@@ -1,4 +1,5 @@
 require_relative "../lib/sales_engine"
+require "pry"
 
 class SalesAnalyst
   attr_reader :se, :avg_inv_per_day
@@ -160,6 +161,35 @@ class SalesAnalyst
   end
 
   def total_revenue_by_date(date)
+    invoices = se.invoices.find_all_by_date(date)
+    inv_ids = invoices.map {|invoice| invoice.id}
+    finding_total_revenue_by_date(invoices, inv_ids)
+  end
+
+  def finding_total_revenue_by_date(invoices, inv_ids)
+    inv_items = se.invoice_items
+    all_inv_itms = inv_ids.map {|id| inv_items.
+      find_all_by_invoice_id(id)}.flatten
+    result = all_inv_itms.map do |inv_itms|
+      inv_itms.quantity * inv_itms.unit_price
+    end
+    result.reduce(:+)
+  end
+
+  def ranking_merchants_by_revenue
+      all_merchant.sort_by do |merchant|
+      merchant.revenue
+    end
+  end
+
+  # def removing_nils(ranking)
+  #   ranking.delete_if do |merchant|
+  #     merchant.revenue == 0.0
+  #   end
+  # end
+
+  def top_revenue_earners(number = 20)
+    ranking_merchants_by_revenue[0..number - 1]
   end
 
 end

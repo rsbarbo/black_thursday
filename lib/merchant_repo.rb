@@ -1,5 +1,6 @@
 require "csv"
 require_relative "../lib/merchant"
+require "pry"
 
 class MerchantRepo
   attr_reader :engine
@@ -56,6 +57,12 @@ class MerchantRepo
     all_ids = engine.invoices.find_all_by_merchant_id(id)
     customers = all_ids.map {|invoice| invoice.customer}
     customers.uniq
+  end
+
+  def seeking_revenue
+    engine.invoices.all_invoices.inject(BigDecimal.new(0)) do |sum, invoice|
+      sum =+ invoice.total if invoice.total != nil && invoice.is_paid_in_full?
+    end
   end
 
 end
