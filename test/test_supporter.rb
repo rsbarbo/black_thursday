@@ -3,21 +3,21 @@ require_relative "../lib/sales_engine"
 class Supporter
 
   def se
-  SalesEngine.from_csv({:items=>"./test/support/items_test.csv",
-    :merchants=>"./test/support/merchants_test.csv",
-    :invoices=>"./test/support/invoices_test.csv",
-    :invoice_items=>"./test/support/invoice_items_test.csv",
-    :transactions=>"./test/support/transactions_test.csv",
-    :customers=>"./test/support/customers_test.csv"})
+  SalesEngine.from_csv({:items=>"./test/support/items.csv",
+    :merchants=>"./test/support/merchants.csv",
+    :invoices=>"./test/support/invoices.csv",
+    :invoice_items=>"./test/support/invoice_items.csv",
+    :transactions=>"./test/support/transactions.csv",
+    :customers=>"./test/support/customers.csv"})
   end
 
   def input
-    {:items=>"./test/support/items_test.csv",
-      :merchants=>"./test/support/merchants_test.csv",
-      :invoices=>"./test/support/invoices_test.csv",
-      :invoice_items=>"./test/support/invoice_items_test.csv",
-      :transactions=>"./test/support/transactions_test.csv",
-      :customers=>"./test/support/customers_test.csv"}
+    {:items=>"./test/support/items.csv",
+      :merchants=>"./test/support/merchants.csv",
+      :invoices=>"./test/support/invoices.csv",
+      :invoice_items=>"./test/support/invoice_items.csv",
+      :transactions=>"./test/support/transactions.csv",
+      :customers=>"./test/support/customers.csv"}
   end
-  
+
 end

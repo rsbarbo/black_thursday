@@ -13,7 +13,7 @@ class InvoiceItemRepoTest < Minitest::Test
   end
 
   def test_it_returns_all_invoice_items
-    assert_equal 202, se.invoice_items.all.length
+    assert_equal 21830, se.invoice_items.all.length
   end
 
   def test_it_returns_all_invoiced_by_item_id
@@ -21,7 +21,7 @@ class InvoiceItemRepoTest < Minitest::Test
   end
 
   def test_it_returns_all_items_by_item_id
-    assert_equal 2, se.invoice_items.find_all_by_item_id(263567292).length
+    assert_equal 10, se.invoice_items.find_all_by_item_id(263567292).length
   end
 
   def test_it_returns_all_invoices_by_invoice_id

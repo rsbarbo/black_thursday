@@ -1,8 +1,8 @@
+require 'csv'
 require "./test_helper"
 require "./lib/item_repo"
 require_relative '../lib/sales_engine'
-require 'csv'
-
+require_relative "../test/test_supporter"
 
 class ItemRepoTest < Minitest::Test
   attr_reader :se

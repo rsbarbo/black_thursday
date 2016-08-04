@@ -39,7 +39,7 @@ class CustomerRepoTest < Minitest::Test
 
   def test_it_returns_all_merchants_by_customer_id
     customer = se.customers.find_by_id(7)
-    assert_equal 1, customer.merchants.length
+    assert_equal 4, customer.merchants.length
   end
 
 end

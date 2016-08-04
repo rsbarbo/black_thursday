@@ -12,7 +12,7 @@ class TransactionRepoTest < Minitest::Test
   end
 
   def test_it_returns_all_known_transaction_instances
-    assert_equal 199, se.transactions.all.length
+    assert_equal 4985, se.transactions.all.length
   end
 
   def test_it_returns_all_transactions_by_transaction_id
@@ -23,7 +23,7 @@ class TransactionRepoTest < Minitest::Test
   end
 
   def test_it_can_return_all_transactions_by_invoice_id
-    assert_equal 1, se.transactions.find_all_by_invoice_id(2179).length
+    assert_equal 2, se.transactions.find_all_by_invoice_id(2179).length
   end
 
   def test_it_returns_all_transactions_by_cc_number
@@ -31,8 +31,8 @@ class TransactionRepoTest < Minitest::Test
   end
 
   def test_it_returns_all_transactions_by_result
-    assert_equal 161, se.transactions.find_all_by_result("success").length
-    assert_equal 38, se.transactions.find_all_by_result("failed").length
+    assert_equal 4158, se.transactions.find_all_by_result("success").length
+    assert_equal 827, se.transactions.find_all_by_result("failed").length
   end
 
   def test_it_returns_invoices_by_transaction_id
