@@ -1,9 +1,9 @@
 require "csv"
 require "bigdecimal"
 require "./test_helper"
-require_relative '../test/test_supporter'
+require_relative "../lib/sales_engine"
 require_relative "../lib/invoice_repo"
-require_relative '../lib/sales_engine'
+require_relative "../test/test_supporter"
 
 class InvoiceRepoTest < Minitest::Test
   attr_reader :se
@@ -57,7 +57,7 @@ class InvoiceRepoTest < Minitest::Test
 
   def test_return_invoice_merchant
     invoice = se.invoices.find_by_id(1)
-    assert_equal nil, invoice.merchant
+    assert_equal 12335938, invoice.merchant.id
   end
 
   def test_it_can_get_all_items_on_a_particular_invoice
@@ -73,7 +73,7 @@ class InvoiceRepoTest < Minitest::Test
 
   def test_it_can_get_transaction_from_invoice_id
     invoice = se.invoices.find_by_id(7)
-    assert_equal 0, invoice.transactions.length
+    assert_equal 1, invoice.transactions.length
   end
 
   def test_it_can_find_a_customer
@@ -84,7 +84,7 @@ class InvoiceRepoTest < Minitest::Test
 
   def test_invoice_is_paid_in_full_returns_false
     invoice = se.invoices.find_by_id(7)
-    assert_equal false, invoice.is_paid_in_full?
+    assert_equal true, invoice.is_paid_in_full?
   end
 
 

@@ -122,12 +122,11 @@ class SalesAnalyst
 
   def revenue_by_merchant(merch_id)
     merchant = all_merchant.map {|mer| mer.merchant_repo.find_by_id(merch_id)}
-    merchant.map do |merch|
+    s = merchant.map do |merch|
       merch.revenue
     end.max
   end
 
-  #required method
   def most_sold_item_for_merchant(merchant_id)
     merchant = se.merchants.find_by_id(merchant_id)
     invoices = merchant.invoices.find_all(&:is_paid_in_full?)
@@ -142,7 +141,7 @@ class SalesAnalyst
     item_ids.map {|item_id| se.items.find_by_id(item_id)}
   end
 
-  
+
   def best_item_for_merchant(merchant_id)
     merchant = se.merchants.find_by_id(merchant_id)
     invoices = merchant.invoices.find_all(&:is_paid_in_full?)
