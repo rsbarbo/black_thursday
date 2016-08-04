@@ -88,4 +88,53 @@ module SalesAnalystAssistant
     result.reduce(:+)
   end
 
+  def merchant_items_sold(invoice_items)
+    invoice_items.reduce({}) do |hash, invoice_item|
+      hash[invoice_item.item_id] = 0 if hash[invoice_item.item_id].nil?
+      hash[invoice_item.item_id] += invoice_item.quantity
+      hash
+    end
+  end
+
+  def invoice_price_vs_item_unit_price(invoice_item_id)
+    invoice_item = se.invoice_items.find_by_id(invoice_item_id)
+    item = se.items.find_by_id(invoice_item.item_id)
+    (invoice_item.unit_price / item.unit_price - 1).round(2).to_f
+  end
+
+  def invoice_revenue(invoice_id)
+    invoice = se.invoices.find_by_id(invoice_id)
+    return 0 if !invoice.is_paid_in_full?
+    invoice_items = se.invoice_items.find_all_by_invoice_id(invoice.id)
+    invoice_items.reduce(0) do |sum, invoice_item|
+      sum+invoice_item.quantity*item_by_invoice_item(invoice_item).unit_price
+    end.to_f
+  end
+
+  def item_by_invoice_item(invoice_item)
+    se.items.find_by_id(invoice_item.item_id)
+  end
+
+  def invoice_total_vs_revenue_by_id(invoice_id)
+    invoice = se.invoices.find_by_id(invoice_id)
+    return 0 if !invoice.is_paid_in_full?
+    (invoice.total / invoice_revenue(invoice.id) - 1).to_f.round(2)
+  end
+
+  def merchant_average_discount(merchant_id)
+    merchant = se.merchants.find_by_id(merchant_id)
+    ttl_disc_given = merchant.invoices.reduce(0) do |sum, invoice|
+      sum + invoice_total_vs_revenue_by_id(invoice.id)
+    end
+    return 0 if merchant.invoices.empty?
+    (ttl_disc_given / merchant.invoices.length).round(2)
+  end
+
+  def merchants_average_average_discount
+    total_discount = se.merchants.all.reduce(0) do |sum, merchant|
+      sum + merchant_average_discount(merchant.id)
+    end
+    (total_discount / se.merchants.all.length).round(2)
+  end
+
 end

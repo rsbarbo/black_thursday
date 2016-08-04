@@ -127,4 +127,34 @@ class SalesAnalyst
     end.max
   end
 
+  #required method
+  def most_sold_item_for_merchant(merchant_id)
+    merchant = se.merchants.find_by_id(merchant_id)
+    invoices = merchant.invoices.find_all(&:is_paid_in_full?)
+    invoice_items = invoices.flat_map do |invoice|
+      se.invoice_items.find_all_by_invoice_id(invoice.id)
+    end
+    item_counts = merchant_items_sold(invoice_items)
+    most_sold = item_counts.max_by{|key, value| value}.last
+    item_ids = item_counts.find_all do |key, value|
+      most_sold == value
+    end.map(&:first)
+    item_ids.map {|item_id| se.items.find_by_id(item_id)}
+  end
+
+  
+  def best_item_for_merchant(merchant_id)
+    merchant = se.merchants.find_by_id(merchant_id)
+    invoices = merchant.invoices.find_all(&:is_paid_in_full?)
+    invoice_items = invoices.flat_map do |invoice|
+      se.invoice_items.find_all_by_invoice_id(invoice.id)
+    end
+    item_counts = invoice_items.inject({}) do |hash, invoice_item|
+      hash[invoice_item.item_id] = 0 if hash[invoice_item.item_id].nil?
+      hash[invoice_item.item_id]+=invoice_item.quantity*invoice_item.unit_price
+      hash
+    end
+    se.items.find_by_id(item_counts.max_by{|key, value| value}.first)
+  end
+
 end
